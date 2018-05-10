@@ -19,6 +19,7 @@ const index = require('./routes/index');
 
 const kategori = require('./routes/kategori');
 const genelayar = require('./routes/genelayar');
+const firma = require('./routes/firma');
 const db  = require('./helper/db')();
 const app = express();
 
@@ -29,7 +30,7 @@ app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-// her sayafada olacak ları buradanyap midilware
+// Genel Ayar midilware
 app.use( (req, res, next)=> {
    const GenelAyar = require("./model/GenelAyar")
    const genelayar = GenelAyar.findOne();
@@ -43,6 +44,26 @@ app.use( (req, res, next)=> {
        next()
    })
 
+
+
+})
+
+// Firma Ayar Statik sayfa
+app.use( (req, res, next)=> {
+   const Firma = require("./model/FirmaAyar")
+   const firma = Firma.findOne();
+   firma.then((firma)=>{
+
+       res.firma = firma;
+
+       next()
+   }).catch((err)=>{
+       console.log(err)
+       next()
+   })
+
+
+
 })
 
 
@@ -55,12 +76,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/api/kategori', kategori);
 app.use('/api/genelayar', genelayar);
+app.use('/api/firma', firma);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
     const err = new Error('Not Found');
   err.status = 404;
-  res.render("hata"); // hata sayfası hat.pug
+  res.send(err); // hata sayfası hat.pug
   next(err);
 });
 
@@ -72,7 +94,7 @@ app.use((err, req, res, next)=> {
 
   // render the error page
   res.status(err.status || 500);
-  res.send('error');
+  res.send(err);
 });
 
 

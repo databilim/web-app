@@ -15,7 +15,12 @@ const KategoriSchema = new Schema({
     createAt:{
         type:Date,
         default:Date.now,
+    },
+    sira:{
+        type:Number,
+
     }
+
 })
 
 module.exports = mongoose.model('kategori', KategoriSchema)
