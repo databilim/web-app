@@ -1,60 +1,61 @@
-header#header
-    .header-top
-        .container
-            .header-top-container
-                .header-top-left
-                    a.header-top-phone(href="tel: 4447472" title=" 444 7 HSC (472)")
-                        i.icon.icon-header-phone
-                        | 444 7 HSC (472)
-                .header-top-right
-                    .header-top-search
-                        button.button(type="submit")
-                            i.icon.icon-header-search
-                        input(type="text" placeholder="Aranacak Kelime")
-                    .header-top-language
-                        button.button.header-top-language-button(type="button")
-                            | Türkçe
-                            i.icon.icon-header-language-caret
-                        .header-top-language-dropdown
-                            a.header-top-language-dropdown-link(href="" title="Language") English
-                            a.header-top-language-dropdown-link(href="" title="Language") Türkçe
-    .header-bottom
-        .container
-            .header-bottom-container
-                .header-bottom-logo
-                    a(href="" title="")
-                        img(src="assets/dist/img/logo.png" alt="AquaTurk")
-                .header-bottom-menu
-                    nav
-                        ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
-                            li.header-bottom-menu-list-item
-                                a(href="" title="Menu Item") Anasayfa
-                            li.header-bottom-menu-list-item
-                                a(href="" title="Menu Item") Hakkımızda
-                            li.header-bottom-menu-list-item
-                                a(href="" title="Menu Item")
-                                    | Ürünler
-                                    i.icon.icon-header-menu-caret
-                                ul.header-bottom-menu-list-dropdown
-                                    li
-                                        a(href="" title="Menu Item") Ürünler
-                                    li
-                                        a(href="" title="Menu Item") Ürünler
-                                    li
-                                        a(href="" title="Menu Item") Ürünler
-                                    li
-                                        a(href="" title="Menu Item") Ürünler
-                            li.header-bottom-menu-list-item
-                                a(href="" title="Menu Item") İletişim
-                        button.button.button-mobile-menu.hidden-lg.hidden-md(type="button")
-                            i.icon.icon-header-bars
-        .header-bottom-dropdown.hidden-lg.hidden-md
-            ul.header-bottom-dropdown-list
-                li.header-bottom-dropdown-list-item
-                    a(href="" title="Menu Item") Anasayfa
-                li.header-bottom-dropdown-list-item
-                    a(href="" title="Menu Item") Hakkımızda
-                li.header-bottom-dropdown-list-item
-                    a(href="" title="Menu Item") Ürünler
-                li.header-bottom-dropdown-list-item
-                    a(href="" title="Menu Item") İletişim
+doctype html
+html(lang="tr")
+    head
+        // Meta
+        meta(charset="utf-8")
+        title #{genel.title}
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        meta(name="theme-color" content="#fff")
+        meta(name="keywords" content= "" + genel.keywords )
+        meta(name="description" content= "" + genel.description )
+        // Stylesheets
+        link(rel="stylesheet" href="assets/dist/css/custom/custom.css")
+        script(src='/socket.io/socket.io.js')
+    body
+        header#header
+            .header-top
+                .container
+                    .header-top-container
+                        .header-top-left
+                            a.header-top-phone(href="tel:"+firma.telefon title=""+firma.telefon)
+                                i.icon.icon-header-phone
+                                | #{firma.telefon}
+                        .header-top-right
+                            .header-top-search
+                                button.button(type="submit")
+                                    i.icon.icon-header-search
+                                input(type="text" placeholder="Aranacak Kelime")
+                            .header-top-language
+                                button.button.header-top-language-button(type="button")
+                                    | Türkçe
+                                    i.icon.icon-header-language-caret
+                                .header-top-language-dropdown
+                                    a.header-top-language-dropdown-link(href="" title="Language") English
+                                    a.header-top-language-dropdown-link(href="" title="Language") Türkçe
+            .header-bottom
+                .container
+                    .header-bottom-container
+                        .header-bottom-logo
+                            a(href="" title="")
+                                img(src="assets/dist/img/logo.png" alt="AquaTurk")
+                        .header-bottom-menu
+                            nav
+                                ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
+                                  each val,index in kategori
+
+                                     if kategori.ust_id != ""
+                                        li.header-bottom-menu-list-item
+                                            a(href=""+val.seoUrl title=""+val.adi) #{val.adi}
+
+                                button.button.button-mobile-menu.hidden-lg.hidden-md(type="button")
+                                    i.icon.icon-header-bars
+                .header-bottom-dropdown.hidden-lg.hidden-md
+                    ul.header-bottom-dropdown-list
+                        li.header-bottom-dropdown-list-item
+                            a(href="" title="Menu Item") Anasayfa
+                        li.header-bottom-dropdown-list-item
+                            a(href="" title="Menu Item") Hakkımızda
+                        li.header-bottom-dropdown-list-item
+                            a(href="" title="Menu Item") Ürünler
+                        li.header-bottom-dropdown-list-item
+                            a(href="" title="Menu Item") İletişim

@@ -20,6 +20,7 @@ const index = require('./routes/index');
 const kategori = require('./routes/kategori');
 const genelayar = require('./routes/genelayar');
 const firma = require('./routes/firma');
+const mail = require('./routes/mail');
 const db  = require('./helper/db')();
 const app = express();
 
@@ -63,8 +64,23 @@ app.use( (req, res, next)=> {
    })
 
 
+})
+
+app.use((req,res,next)=>{
+
+    const Kategori = require("./model/Kategori");
+    const kategori = Kategori.find().sort({sira:1});
+
+    kategori.then((data)=> {
+        res.kategori = data
+        next()
+    })
+
+
+
 
 })
+
 
 
 app.use(logger('dev'));
@@ -77,6 +93,7 @@ app.use('/', index);
 app.use('/api/kategori', kategori);
 app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
+app.use('/api/mail', mail);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {

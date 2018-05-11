@@ -1,29 +1,33 @@
 const mongoose      =   require("mongoose");
 const Schema        =   mongoose.Schema;
 
-const KategoriSchema = new Schema({
-    ust_id: String,
-    adi:{
+const MailSchema = new Schema({
+
+    yoneticiMail:{
         type:String,
         required:true,
     },
-    seoUrl:{
+    bilgiMail:{
         type:String,
     },
-    link:{
+    smtpHost:{
         type:String,
     },
-
-    durum:Number,
+    smtpPort:{
+        type:String,
+    },
+    smtpUser:{
+        type:String,
+    },
+    smtpPass:{
+        type:String,
+    },
     createAt:{
         type:Date,
         default:Date.now,
     },
-    sira:{
-        type:Number,
 
-    }
 
 })
 
-module.exports = mongoose.model('kategori', KategoriSchema)
+module.exports = mongoose.model('mail', MailSchema)
