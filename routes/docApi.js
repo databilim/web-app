@@ -4,6 +4,7 @@ const router = express.Router();
 const GenelAyar = require("../model/GenelAyar");
 
 const Firma = require("../model/FirmaAyar");
+const SayfaMenu = require("../model/SayfaMenu");
 
 const slugify = require('slugify')
 
@@ -38,5 +39,19 @@ router.get('/firma', (req, res, next)=> {
 
 });
 
+router.get('/SayfaMenu', (req, res, next)=> {
+
+
+    const sayfaMenu = SayfaMenu.find().sort({sira:-1});
+
+    sayfaMenu.then((ayar)=>{
+
+        res.json(ayar)
+    }).catch((err)=>{
+
+        res.json(err)
+    })
+
+});
 
 module.exports = router;

@@ -11,12 +11,17 @@ const httpGet = (theUrl)=>
 
 
 
-let genelAyar = httpGet("/doc/api/genelAyar")
-let firma = httpGet("/doc/api/firma")
+let genelAyar = httpGet("/doc/api/genelAyar");
+let firma = httpGet("/doc/api/firma");
+let sayfaMenu = httpGet("/doc/api/sayfamenu");
 //console.log(genelAyar)
 // HEad bölümü
 let head = document.querySelector("head");
-let body = document.querySelector("body");
+let header = document.querySelector("aquaHeader");
+let urunler = document.querySelector("aquaturkUrunler");
+let sponsor = document.querySelector("aquaturkSponsor");
+let ebulten = document.querySelector("ebulten");
+let aquaturkFooter = document.querySelector("aquaturkFooter");
 
 head.innerHTML = `
         <title > ${genelAyar.title}</title>
@@ -27,13 +32,13 @@ head.innerHTML = `
         <link rel="stylesheet" href="assets/dist/css/custom/custom.css">
         `;
 
-
-body.innerHTML = `<header id="header">
+// HEADER
+header.innerHTML= `<header id="header">
     <div class="header-top">
         <div class="container">
             <div class="header-top-container">
                 <div class="header-top-left">
-                    <a class="header-top-phone" href="tel: 4447472" title=" 444 7 HSC (472)"><i class="icon icon-header-phone"></i>444 7 HSC (472)</a>
+                    <a class="header-top-phone" href="${firma.telefon}" title=" ${firma.telefon}"><i class="icon icon-header-phone"></i>444 7 HSC (472)</a>
                 </div>
                 <div class="header-top-right">
                     <div class="header-top-search">
@@ -55,32 +60,20 @@ body.innerHTML = `<header id="header">
         <div class="container">
             <div class="header-bottom-container">
                 <div class="header-bottom-logo">
-                    <a href="" title="AquaTurk">
-                        <img src="assets/dist/img/logo.png" alt="AquaTurk">
+                    <a href="" title="${genelAyar.title}">
+                        <img src="assets/dist/img/logo.png" alt="${genelAyar.title}">
                     </a>
                 </div>
-                <div class="header-bottom-menu">
-                    <nav>
-                        <ul class="header-bottom-menu-list hidden-sm hidden-xs hidden-xxs">
-                            <li class="header-bottom-menu-list-item">
-                                <a href="" title="Menu Item">Anasayfa</a>
-                            </li>
-                            <li class="header-bottom-menu-list-item">
-                                <a href="" title="Menu Item">Hakkımızda</a>
-                            </li>
-                            <li class="header-bottom-menu-list-item">
-                                <a href="" title="Menu Item">Ürünler <i class="icon icon-header-menu-caret"></i></a>
-                                <ul class="header-bottom-menu-list-dropdown">
-                                    <li><a href="" title="Menu Item">Ürünler</a></li>
-                                    <li><a href="" title="Menu Item">Ürünler</a></li>
-                                    <li><a href="" title="Menu Item">Ürünler</a></li>
-                                    <li><a href="" title="Menu Item">Ürünler</a></li>
-                                </ul>
-                            </li>
-                            <li class="header-bottom-menu-list-item">
-                                <a href="" title="Menu Item">İletişim</a>
-                            </li>
-                        </ul>
+                <div class="header-bottom-menu"> 
+                 <nav>
+                     <ul class="header-bottom-menu-list hidden-sm hidden-xs hidden-xxs">
+               
+                      ${ sayfaMenu.map((d)=> `<li class="header-bottom-menu-list-item">
+                                    <a href="${d.seoUrl}" title="${d.adi}">${d.adi}</a>
+                                    </li>` ).join(" ")}
+                           
+                           
+                            </ul>  
                         <button class="button button-mobile-menu hidden-lg hidden-md" type="button"><i class="icon icon-header-bars"></i></button>
                     </nav>
                 </div>
@@ -104,3 +97,165 @@ body.innerHTML = `<header id="header">
         </div>
     </div>
 </header>`;
+
+
+urunler.innerHTML = `
+<div id="products">
+    <div class="container">
+        <div class="products-container">
+            <a class="products-item" href="" title="Product Item">
+                <div class="products-item-background">
+                    <img src="assets/dist/img/products-bg-1.png" alt="Product Background">
+                </div>
+                <div class="products-item-content">
+                    <div class="products-item-content-title">Su Arıtma Sistemleri</div>
+                    <div class="products-item-content-image">
+                        <img src="assets/dist/img/product-1.png" alt="Product">
+                    </div>
+                </div>
+                <div class="products-item-button">
+                    Ürünleri İncele
+                </div>
+            </a>
+            <a class="products-item" href="" title="Product Item">
+                <div class="products-item-background">
+                    <img src="assets/dist/img/products-bg-2.png" alt="Product Background">
+                </div>
+                <div class="products-item-content">
+                    <div class="products-item-content-title">Filtre Grubu</div>
+                    <div class="products-item-content-image">
+                        <img src="assets/dist/img/product-2.png" alt="Product">
+                    </div>
+                </div>
+                <div class="products-item-button">
+                    Ürünleri İncele
+                </div>
+            </a>
+            <a class="products-item" href="" title="Product Item">
+                <div class="products-item-background">
+                    <img src="assets/dist/img/products-bg-3.png" alt="Product Background">
+                </div>
+                <div class="products-item-content">
+                    <div class="products-item-content-title">Yedek Parça ve Filtre Grubu</div>
+                    <div class="products-item-content-image">
+                        <img src="assets/dist/img/product-3.png" alt="Product">
+                    </div>
+                </div>
+                <div class="products-item-button">
+                    Ürünleri İncele
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+`;
+
+sponsor.innerHTML = `<div id="sponsors">
+    <div class="container">
+        <div class="sponsors">
+            <div class="sponsors-left">
+                <button class="button" type="button"><i class="icon icon-sponsors-left-arrow"></i></button>
+            </div>
+            <div class="sponsors-center">
+                <div id="sponsorSlide" class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-1.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-2.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-3.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-4.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-5.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-6.png" alt="Sponsor"></div></div>
+                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-7.png" alt="Sponsor"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sponsors-right">
+                <button class="button" type="button"><i class="icon icon-sponsors-right-arrow"></i></button>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+ebulten.innerHTML = `<div id="subscribe">
+    <div class="container">
+        <div class="subscribe-container">
+            <div class="subscribe-content">
+                <h3 class="subscribe-content-title">Gelişmelerden <strong>Haberdar Olun</strong></h3>
+                <p class="subscribe-content-text">Yeni ürün ve duyurularımızdan anında haberdar olun</p>
+            </div>
+            <div class="subscribe-input">
+                <input type="email" placeholder="E-Posta Adresi">
+                <button class="button" type="button"><i class="icon icon-subscribe"></i></button>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+aquaturkFooter.innerHTML = `<footer id="footer">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <ul class="footer-list">
+                        <li><a href="" title="List Item">Stratos</a></li>
+                        <li><a href="" title="List Item">Stilmax</a></li>
+                        <li><a href="" title="List Item">Ecoplus</a></li>
+                        <li><a href="" title="List Item">Prizma</a></li>
+                        <li><a href="" title="List Item">Safir</a></li>
+                        <li><a href="" title="List Item">Aquabest</a></li>
+                        <li><a href="" title="List Item">Hf Serileri</a></li>
+                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
+                        <li><a href="" title="List Item">Sebiller</a></li>
+                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
+                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <ul class="footer-list">
+                        <li><a href="" title="List Item">Stratos</a></li>
+                        <li><a href="" title="List Item">Stilmax</a></li>
+                        <li><a href="" title="List Item">Ecoplus</a></li>
+                        <li><a href="" title="List Item">Prizma</a></li>
+                        <li><a href="" title="List Item">Safir</a></li>
+                        <li><a href="" title="List Item">Aquabest</a></li>
+                        <li><a href="" title="List Item">Hf Serileri</a></li>
+                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
+                        <li><a href="" title="List Item">Sebiller</a></li>
+                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
+                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <ul class="footer-list">
+                        <li><a href="" title="List Item">Stratos</a></li>
+                        <li><a href="" title="List Item">Stilmax</a></li>
+                        <li><a href="" title="List Item">Ecoplus</a></li>
+                        <li><a href="" title="List Item">Prizma</a></li>
+                        <li><a href="" title="List Item">Safir</a></li>
+                        <li><a href="" title="List Item">Aquabest</a></li>
+                        <li><a href="" title="List Item">Hf Serileri</a></li>
+                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
+                        <li><a href="" title="List Item">Sebiller</a></li>
+                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
+                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="footer-title">Bizi Takip Edin</h3>
+                    <div class="footer-social">
+                        <a class="button" href="" title="Social"><i class="icon icon-footer-facebook"></i></a>
+                        <a class="button" href="" title="Social"><i class="icon icon-footer-twitter"></i></a>
+                        <a class="button" href="" title="Social"><i class="icon icon-footer-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        Copyright © 2018 Aquaturk Inc. Tüm hakları saklıdır.
+    </div>
+</footer>`;
