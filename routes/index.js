@@ -4,9 +4,11 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', (req, res, next)=> {
   //console.log(res.kategori)
-  res.render('index', { title: 'Aquturk' ,static:res});
-
+  //res.render('index', { title: 'Aquturk' ,static:res});
+    res.sendFile("index.html")
 });
+
+
 router.get('/:seuUrl', (req, res, next)=> {
 
 

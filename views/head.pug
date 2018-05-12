@@ -36,15 +36,17 @@ html(lang="tr")
                 .container
                     .header-bottom-container
                         .header-bottom-logo
-                            a(href="" title="")
+                            a(href="/" title="")
                                 img(src="assets/dist/img/logo.png" alt="AquaTurk")
                         .header-bottom-menu
                             nav
                                 ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
+
+
                                   each val,index in kategori
 
                                      if kategori.ust_id != ""
-                                        li.header-bottom-menu-list-item
+                                     li.header-bottom-menu-list-item
                                             a(href=""+val.seoUrl title=""+val.adi) #{val.adi}
 
                                 button.button.button-mobile-menu.hidden-lg.hidden-md(type="button")

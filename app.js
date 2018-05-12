@@ -16,6 +16,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
+const doc = require('./routes/docApi');
 
 const kategori = require('./routes/kategori');
 const genelayar = require('./routes/genelayar');
@@ -25,29 +26,13 @@ const db  = require('./helper/db')();
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'pug');
+
+app.use(express.static(__dirname + '/public'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-// Genel Ayar midilware
-app.use( (req, res, next)=> {
-   const GenelAyar = require("./model/GenelAyar")
-   const genelayar = GenelAyar.findOne();
-   genelayar.then((ayar)=>{
-
-       res.genelayar = ayar;
-
-       next()
-   }).catch((err)=>{
-       console.log(err)
-       next()
-   })
-
-
-
-})
 
 // Firma Ayar Statik sayfa
 app.use( (req, res, next)=> {
@@ -90,6 +75,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/doc/api', doc);
 app.use('/api/kategori', kategori);
 app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
