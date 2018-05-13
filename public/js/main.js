@@ -8,12 +8,13 @@ const httpGet = (theUrl)=>
     return JSON.parse(xmlHttp.responseText);
 }
 
-
+let s = 0;
 
 
 let genelAyar = httpGet("/doc/api/genelAyar");
 let firma = httpGet("/doc/api/firma");
 let sayfaMenu = httpGet("/doc/api/sayfamenu");
+let sliders = httpGet("/doc/api/slider");
 //console.log(genelAyar)
 // HEad bölümü
 let head = document.querySelector("head");
@@ -68,7 +69,9 @@ header.innerHTML= `<header id="header">
                 <div class="header-bottom-menu"> 
                  <nav>
                      <ul class="header-bottom-menu-list hidden-sm hidden-xs hidden-xxs">
-               
+                        <li class="header-bottom-menu-list-item">
+                                    <a href="/" title="${genelAyar.title}">Anasayfa</a>
+                                    </li>
                       ${ sayfaMenu.map((d)=> `<li class="header-bottom-menu-list-item">
                                     <a href="${d.seoUrl}" title="${d.adi}">${d.adi}</a>
                                     </li>` ).join(" ")}
@@ -100,78 +103,36 @@ header.innerHTML= `<header id="header">
 </header>`;
 
 
-slider.innerHTML = `<div id="hero">
+slider.innerHTML = `
+<div id="hero">
     <div id="heroSlider" class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            ${sliders.map((sdata)=> `<div class="swiper-slide">
                 <div class="hero-item">
                     <div class="hero-item-image">
                         <img src="assets/dist/img/hero-1.png" alt="Hero Image">
                     </div>
                     <div class="hero-item-content">
                         <div class="container">
-                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri</h2>
+                            <h2 class="hero-item-content-title">${ sdata.title}</h2>
                             <p class="hero-item-content-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Suspendisse congue egestas tincidunt. Suspendisse erat
-                                sapien, commodo eget blandit ac, bibendum eu risus.
-                                Aenean tempor nulla in erat lacinia, eu scelerisque est
-                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
-                                Nunc tristique magna nec tellus volutpat sagittis.
+                                ${sdata.info}
                             </p>
-                            <img class="hero-item-content-image" src="assets/dist/img/hero-content-1.png" alt="Hero Image">
+                            <img class="hero-item-content-image" src="${sdata.resim}" alt="Hero Image">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="hero-item">
-                    <div class="hero-item-image">
-                        <img src="assets/dist/img/hero-1.png" alt="Hero Image">
-                    </div>
-                    <div class="hero-item-content">
-                        <div class="container">
-                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri - 2</h2>
-                            <p class="hero-item-content-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Suspendisse congue egestas tincidunt. Suspendisse erat
-                                sapien, commodo eget blandit ac, bibendum eu risus.
-                                Aenean tempor nulla in erat lacinia, eu scelerisque est
-                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
-                                Nunc tristique magna nec tellus volutpat sagittis.
-                            </p>
-                            <img class="hero-item-content-image" src="../assets/dist/img/hero-content-1.png" alt="Hero Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="hero-item">
-                    <div class="hero-item-image">
-                        <img src="assets/dist/img/hero-1.png" alt="Hero Image">
-                    </div>
-                    <div class="hero-item-content">
-                        <div class="container">
-                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri - 3</h2>
-                            <p class="hero-item-content-text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Suspendisse congue egestas tincidunt. Suspendisse erat
-                                sapien, commodo eget blandit ac, bibendum eu risus.
-                                Aenean tempor nulla in erat lacinia, eu scelerisque est
-                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
-                                Nunc tristique magna nec tellus volutpat sagittis.
-                            </p>
-                            <img class="hero-item-content-image" src="assets/dist/img/hero-content-1.png" alt="Hero Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div>` )}
+            
+            
+            
+           
+          
         </div>
     </div>
     <div class="hero-pagination">
         <span class="hero-pagination-item active"></span>
-        <span class="hero-pagination-item"></span>
-        <span class="hero-pagination-item"></span>
+   
     </div>
 </div>`;
 
@@ -280,13 +241,7 @@ aquaturkFooter.innerHTML = `<footer id="footer">
                         <li><a href="" title="List Item">Stilmax</a></li>
                         <li><a href="" title="List Item">Ecoplus</a></li>
                         <li><a href="" title="List Item">Prizma</a></li>
-                        <li><a href="" title="List Item">Safir</a></li>
-                        <li><a href="" title="List Item">Aquabest</a></li>
-                        <li><a href="" title="List Item">Hf Serileri</a></li>
-                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
-                        <li><a href="" title="List Item">Sebiller</a></li>
-                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
-                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
+                     
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -297,12 +252,7 @@ aquaturkFooter.innerHTML = `<footer id="footer">
                         <li><a href="" title="List Item">Ecoplus</a></li>
                         <li><a href="" title="List Item">Prizma</a></li>
                         <li><a href="" title="List Item">Safir</a></li>
-                        <li><a href="" title="List Item">Aquabest</a></li>
-                        <li><a href="" title="List Item">Hf Serileri</a></li>
-                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
-                        <li><a href="" title="List Item">Sebiller</a></li>
-                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
-                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
+                    
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -311,15 +261,7 @@ aquaturkFooter.innerHTML = `<footer id="footer">
                         <li><a href="" title="List Item">Stratos</a></li>
                         <li><a href="" title="List Item">Stilmax</a></li>
                         <li><a href="" title="List Item">Ecoplus</a></li>
-                        <li><a href="" title="List Item">Prizma</a></li>
-                        <li><a href="" title="List Item">Safir</a></li>
-                        <li><a href="" title="List Item">Aquabest</a></li>
-                        <li><a href="" title="List Item">Hf Serileri</a></li>
-                        <li><a href="" title="List Item">Direk Akışlı Sistemler</a></li>
-                        <li><a href="" title="List Item">Sebiller</a></li>
-                        <li><a href="" title="List Item">Endüstriyel R.O. Sistemler</a></li>
-                        <li><a href="" title="List Item">Kabinetli Sistemler</a></li>
-                    </ul>
+                
                 </div>
                 <div class="col-md-3">
                     <h3 class="footer-title">Bizi Takip Edin</h3>
