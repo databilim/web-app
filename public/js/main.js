@@ -18,6 +18,7 @@ let sayfaMenu = httpGet("/doc/api/sayfamenu");
 // HEad bölümü
 let head = document.querySelector("head");
 let header = document.querySelector("aquaHeader");
+let slider = document.querySelector("aquaturkSlider");
 let urunler = document.querySelector("aquaturkUrunler");
 let sponsor = document.querySelector("aquaturkSponsor");
 let ebulten = document.querySelector("ebulten");
@@ -97,6 +98,82 @@ header.innerHTML= `<header id="header">
         </div>
     </div>
 </header>`;
+
+
+slider.innerHTML = `<div id="hero">
+    <div id="heroSlider" class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="hero-item">
+                    <div class="hero-item-image">
+                        <img src="assets/dist/img/hero-1.png" alt="Hero Image">
+                    </div>
+                    <div class="hero-item-content">
+                        <div class="container">
+                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri</h2>
+                            <p class="hero-item-content-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse congue egestas tincidunt. Suspendisse erat
+                                sapien, commodo eget blandit ac, bibendum eu risus.
+                                Aenean tempor nulla in erat lacinia, eu scelerisque est
+                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
+                                Nunc tristique magna nec tellus volutpat sagittis.
+                            </p>
+                            <img class="hero-item-content-image" src="assets/dist/img/hero-content-1.png" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="hero-item">
+                    <div class="hero-item-image">
+                        <img src="assets/dist/img/hero-1.png" alt="Hero Image">
+                    </div>
+                    <div class="hero-item-content">
+                        <div class="container">
+                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri - 2</h2>
+                            <p class="hero-item-content-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse congue egestas tincidunt. Suspendisse erat
+                                sapien, commodo eget blandit ac, bibendum eu risus.
+                                Aenean tempor nulla in erat lacinia, eu scelerisque est
+                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
+                                Nunc tristique magna nec tellus volutpat sagittis.
+                            </p>
+                            <img class="hero-item-content-image" src="../assets/dist/img/hero-content-1.png" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="hero-item">
+                    <div class="hero-item-image">
+                        <img src="assets/dist/img/hero-1.png" alt="Hero Image">
+                    </div>
+                    <div class="hero-item-content">
+                        <div class="container">
+                            <h2 class="hero-item-content-title"><strong>R.O.</strong> Arıtma Sistemleri - 3</h2>
+                            <p class="hero-item-content-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Suspendisse congue egestas tincidunt. Suspendisse erat
+                                sapien, commodo eget blandit ac, bibendum eu risus.
+                                Aenean tempor nulla in erat lacinia, eu scelerisque est
+                                porttitor. Duis ac auctor ex. Cras tincidunt maximus ex.
+                                Nunc tristique magna nec tellus volutpat sagittis.
+                            </p>
+                            <img class="hero-item-content-image" src="assets/dist/img/hero-content-1.png" alt="Hero Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-pagination">
+        <span class="hero-pagination-item active"></span>
+        <span class="hero-pagination-item"></span>
+        <span class="hero-pagination-item"></span>
+    </div>
+</div>`;
 
 
 urunler.innerHTML = `
@@ -256,6 +333,6 @@ aquaturkFooter.innerHTML = `<footer id="footer">
         </div>
     </div>
     <div class="copyright">
-        Copyright © 2018 Aquaturk Inc. Tüm hakları saklıdır.
+        Copyright © 2018 ${genelAyar.copyright}.
     </div>
 </footer>`;

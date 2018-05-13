@@ -35,37 +35,7 @@ app.use(express.static(__dirname + '/public'));
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-// Firma Ayar Statik sayfa
-app.use( (req, res, next)=> {
-   const Firma = require("./model/FirmaAyar")
-   const firma = Firma.findOne();
-   firma.then((firma)=>{
 
-       res.firma = firma;
-
-       next()
-   }).catch((err)=>{
-       console.log(err)
-       next()
-   })
-
-
-})
-
-app.use((req,res,next)=>{
-
-    const Kategori = require("./model/Kategori");
-    const kategori = Kategori.find().sort({sira:1});
-
-    kategori.then((data)=> {
-        res.kategori = data
-        next()
-    })
-
-
-
-
-})
 
 
 

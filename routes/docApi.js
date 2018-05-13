@@ -12,7 +12,7 @@ const slugify = require('slugify')
 router.get('/genelAyar', (req, res, next)=> {
 
 
-    const genelayar = GenelAyar.findOne().select("title description keywords siteUrl");
+    const genelayar = GenelAyar.findOne().select("title description keywords siteUrl copyright");
 
     genelayar.then((ayar)=>{
 
