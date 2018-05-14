@@ -31,6 +31,7 @@ const FirmaiSchema = new Schema({
     },
 
 
+
 })
 
 module.exports = mongoose.model('firma', FirmaiSchema)

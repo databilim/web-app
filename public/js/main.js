@@ -72,11 +72,12 @@ header.innerHTML= `<header id="header">
                         <li class="header-bottom-menu-list-item">
                                     <a href="/" title="${genelAyar.title}">Anasayfa</a>
                                     </li>
-                      ${ sayfaMenu.map((d)=> `<li class="header-bottom-menu-list-item">
-                                    <a href="${d.seoUrl}" title="${d.adi}">${d.adi}</a>
-                                    </li>` ).join(" ")}
+                      ${ sayfaMenu.map((d)=> d.lokasyon == "header" ? 
+                                    `<li class="header-bottom-menu-list-item">
+                                    <a href="${d.seoUrl}.html" title="${d.adi}">${d.adi}</a>
+                                    </li>` : '').join(" ")}
                            
-                           
+                            
                             </ul>  
                         <button class="button button-mobile-menu hidden-lg hidden-md" type="button"><i class="icon icon-header-bars"></i></button>
                     </nav>
@@ -223,8 +224,10 @@ ebulten.innerHTML = `<div id="subscribe">
                 <p class="subscribe-content-text">Yeni ürün ve duyurularımızdan anında haberdar olun</p>
             </div>
             <div class="subscribe-input">
-                <input type="email" placeholder="E-Posta Adresi">
-                <button class="button" type="button"><i class="icon icon-subscribe"></i></button>
+                <form>
+                    <input type="email" placeholder="E-Posta Adresi">
+                    <button class="button ebultenYolla" type="button"><i class="icon icon-subscribe"></i></button>
+                </form>    
             </div>
         </div>
     </div>

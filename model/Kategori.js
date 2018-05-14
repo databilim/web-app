@@ -22,7 +22,8 @@ const KategoriSchema = new Schema({
     sira:{
         type:Number,
 
-    }
+    },
+
 
 })
 

@@ -19,10 +19,16 @@ const KategoriSchema = new Schema({
         type:Date,
         default:Date.now,
     },
+    lokasyon:{
+        type:String,
+        maxlength: 25,
+
+    },
     sira:{
         type:Number,
 
-    }
+    },
+
 
 })
 
