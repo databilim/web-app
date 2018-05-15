@@ -224,9 +224,11 @@ ebulten.innerHTML = `<div id="subscribe">
                 <p class="subscribe-content-text">Yeni ürün ve duyurularımızdan anında haberdar olun</p>
             </div>
             <div class="subscribe-input">
-                <form>
-                    <input type="email" placeholder="E-Posta Adresi">
-                    <button class="button ebultenYolla" type="button"><i class="icon icon-subscribe"></i></button>
+                    <div class="col-md-3 ebultenHata" style="color:green; display: none">asdasd</div>
+                    <form id="ebultenForm" >
+                    <input type="email" name="eposta" placeholder="E-Posta Adresi">
+                   
+                    <button class="button ebultenYolla" name="formName"  value="ebultenForm" type="button"><i class="icon icon-subscribe"></i></button>
                 </form>    
             </div>
         </div>

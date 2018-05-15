@@ -17,6 +17,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const doc = require('./routes/docApi');
+const post = require('./routes/post');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const kategori = require('./routes/kategori');
@@ -47,6 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/doc/api', doc);
+app.use('/doc/post', post);
+
 app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
 app.use('/api/genelayar', genelayar);
