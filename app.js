@@ -18,6 +18,7 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const doc = require('./routes/docApi');
 const post = require('./routes/post');
+const urun = require('./routes/urun');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const kategori = require('./routes/kategori');
@@ -44,7 +45,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/doc/api', doc);
@@ -52,6 +53,7 @@ app.use('/doc/post', post);
 
 app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
+app.use('/api/urun', urun);
 app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
 app.use('/api/mail', mail);
@@ -72,7 +74,9 @@ app.use((err, req, res, next)=> {
 
   // render the error page
   res.status(err.status || 500);
-  res.send(err);
+  res.send("HATA 500 ");
+  console.log(err)
+    next(err)
 });
 
 

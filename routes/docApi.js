@@ -6,6 +6,8 @@ const GenelAyar = require("../model/GenelAyar");
 const Firma = require("../model/FirmaAyar");
 const SayfaMenu = require("../model/SayfaMenu");
 const Slider = require("../model/Slider");
+const UrunMarka = require("../model/UrunMarka");
+
 
 const slugify = require('slugify')
 
@@ -69,5 +71,35 @@ router.get('/SayfaMenu', (req, res, next)=> {
     })
 
 });
+
+router.get('/:seoUrl'+'.html', (req, res, next)=> {
+
+
+    const sayfaMenu = SayfaMenu.findOne({seoUrl:req.params.seoUrl});
+
+    sayfaMenu.then((ayar)=>{
+
+        res.json(ayar)
+    }).catch((err)=>{
+
+        res.json(err)
+    })
+
+});
+router.get('/urun/markalar', (req, res, next)=> {
+
+
+    const urunMarka = UrunMarka.find({}).sort({sira:-1});
+
+    urunMarka.then((ayar)=>{
+
+        res.json(ayar)
+    }).catch((err)=>{
+
+        res.json(err)
+    })
+
+});
+
 
 module.exports = router;

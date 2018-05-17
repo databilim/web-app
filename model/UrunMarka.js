@@ -1,19 +1,20 @@
 const mongoose      =   require("mongoose");
 const Schema        =   mongoose.Schema;
 
-const KategoriSchema = new Schema({
-    ust_id: String,
+const UrunMarkaSchema = new Schema({
+
     adi:{
         type:String,
         required:true,
     },
-    type:{
-      type:String,
-    },
     seoUrl:{
         type:String,
     },
-    link:{
+
+    resim:{
+        type:String,
+    },
+    logo:{
         type:String,
     },
 
@@ -21,11 +22,6 @@ const KategoriSchema = new Schema({
     createAt:{
         type:Date,
         default:Date.now,
-    },
-    lokasyon:{
-        type:String,
-        maxlength: 25,
-
     },
     sira:{
         type:Number,
@@ -35,4 +31,4 @@ const KategoriSchema = new Schema({
 
 })
 
-module.exports = mongoose.model('sayfaMenu', KategoriSchema)
+module.exports = mongoose.model('urunMarka', UrunMarkaSchema)

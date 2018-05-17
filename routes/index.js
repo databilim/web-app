@@ -1,23 +1,31 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
+
+
+
+
 /* GET home page. */
 router.get('/', (req, res, next)=> {
-  //console.log(res.kategori)
-  //res.render('index', { title: 'Aquturk' ,static:res});
-    res.sendFile("index.html")
+
+    res.sendFile(path.dirname(__dirname) + '/view/index.html')
+
+
+
+
+
 });
 
 
-router.get('/:seuUrl'+".html", (req, res, next)=> {
+router.get('/:siteUrl', (req, res, next)=> {
 
     const url =  req.params;
     console.log(url)
 
-    res.sendFile("detay.html")
+    res.sendFile(path.dirname(__dirname) + '/view/urunler.html')
 
 
 });
-
 
 module.exports = router;

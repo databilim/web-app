@@ -9,23 +9,18 @@ const httpGet = (theUrl)=>
 }
 
 let s = 0;
+let path = window.location.pathname;
 
 
 let genelAyar = httpGet("/doc/api/genelAyar");
 let firma = httpGet("/doc/api/firma");
 let sayfaMenu = httpGet("/doc/api/sayfamenu");
 let sliders = httpGet("/doc/api/slider");
-//console.log(genelAyar)
-// HEad bölümü
-let head = document.querySelector("head");
-let header = document.querySelector("aquaHeader");
-let slider = document.querySelector("aquaturkSlider");
-let urunler = document.querySelector("aquaturkUrunler");
-let sponsor = document.querySelector("aquaturkSponsor");
-let ebulten = document.querySelector("ebulten");
-let aquaturkFooter = document.querySelector("aquaturkFooter");
+let detaysayfa = httpGet("/doc/api"+path);
+let urunMarkalar = httpGet("/doc/api/urun/markalar");
+console.log(urunMarkalar)
 
-head.innerHTML = `
+let headHtml = `
         <title > ${genelAyar.title}</title>
         <meta name="keywords" content="${ genelAyar.keywords }"> 
         <meta name="description" content="${ genelAyar.description }">
@@ -33,9 +28,7 @@ head.innerHTML = `
         <meta name="theme-color" content="#fff">
         <link rel="stylesheet" href="assets/dist/css/custom/custom.css">
         `;
-
-// HEADER
-header.innerHTML= `<header id="header">
+let headerHtml = `<header id="header">
     <div class="header-top">
         <div class="container">
             <div class="header-top-container">
@@ -62,7 +55,7 @@ header.innerHTML= `<header id="header">
         <div class="container">
             <div class="header-bottom-container">
                 <div class="header-bottom-logo">
-                    <a href="" title="${genelAyar.title}">
+                    <a href="/" title="${genelAyar.title}">
                         <img src="assets/dist/img/logo.png" alt="${genelAyar.title}">
                     </a>
                 </div>
@@ -72,8 +65,8 @@ header.innerHTML= `<header id="header">
                         <li class="header-bottom-menu-list-item">
                                     <a href="/" title="${genelAyar.title}">Anasayfa</a>
                                     </li>
-                      ${ sayfaMenu.map((d)=> d.lokasyon == "header" ? 
-                                    `<li class="header-bottom-menu-list-item">
+                      ${ sayfaMenu.map((d)=> d.lokasyon == "header" ?
+    `<li class="header-bottom-menu-list-item">
                                     <a href="${d.seoUrl}.html" title="${d.adi}">${d.adi}</a>
                                     </li>` : '').join(" ")}
                            
@@ -104,7 +97,8 @@ header.innerHTML= `<header id="header">
 </header>`;
 
 
-slider.innerHTML = `
+let sliderHtml =
+     `
 <div id="hero">
     <div id="heroSlider" class="swiper-container">
         <div class="swiper-wrapper">
@@ -137,8 +131,7 @@ slider.innerHTML = `
     </div>
 </div>`;
 
-
-urunler.innerHTML = `
+let urunlerHtml = `
 <div id="products">
     <div class="container">
         <div class="products-container">
@@ -189,8 +182,7 @@ urunler.innerHTML = `
 </div>
 
 `;
-
-sponsor.innerHTML = `<div id="sponsors">
+let sponsorHtml = `<div id="sponsors">
     <div class="container">
         <div class="sponsors">
             <div class="sponsors-left">
@@ -199,6 +191,7 @@ sponsor.innerHTML = `<div id="sponsors">
             <div class="sponsors-center">
                 <div id="sponsorSlide" class="swiper-container">
                     <div class="swiper-wrapper">
+                        
                         <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-1.png" alt="Sponsor"></div></div>
                         <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-2.png" alt="Sponsor"></div></div>
                         <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-3.png" alt="Sponsor"></div></div>
@@ -216,7 +209,7 @@ sponsor.innerHTML = `<div id="sponsors">
     </div>
 </div>`;
 
-ebulten.innerHTML = `<div id="subscribe">
+let ebultenHtml =  `<div id="subscribe">
     <div class="container">
         <div class="subscribe-container">
             <div class="subscribe-content">
@@ -235,38 +228,33 @@ ebulten.innerHTML = `<div id="subscribe">
     </div>
 </div>`;
 
-aquaturkFooter.innerHTML = `<footer id="footer">
+
+let footerHtml = `<footer id="footer">
     <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <h3 class="footer-title">Aquatürk Sayfalar</h3>
                     <ul class="footer-list">
-                        <li><a href="" title="List Item">Stratos</a></li>
-                        <li><a href="" title="List Item">Stilmax</a></li>
-                        <li><a href="" title="List Item">Ecoplus</a></li>
-                        <li><a href="" title="List Item">Prizma</a></li>
+                        <li><a href="" title="List Item">Anasayfa</a></li>
+                     
                      
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <h3 class="footer-title">Aquatürk Modelleri</h3>
                     <ul class="footer-list">
                         <li><a href="" title="List Item">Stratos</a></li>
-                        <li><a href="" title="List Item">Stilmax</a></li>
-                        <li><a href="" title="List Item">Ecoplus</a></li>
-                        <li><a href="" title="List Item">Prizma</a></li>
-                        <li><a href="" title="List Item">Safir</a></li>
-                    
+                      
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h3 class="footer-title">Su Arıtma Ürünleri</h3>
+                    <h3 class="footer-title">Aquaturk İletişim </h3>
                     <ul class="footer-list">
                         <li><a href="" title="List Item">Stratos</a></li>
                         <li><a href="" title="List Item">Stilmax</a></li>
                         <li><a href="" title="List Item">Ecoplus</a></li>
-                
+                         </ul>
                 </div>
                 <div class="col-md-3">
                     <h3 class="footer-title">Bizi Takip Edin</h3>
@@ -283,3 +271,172 @@ aquaturkFooter.innerHTML = `<footer id="footer">
         Copyright © 2018 ${genelAyar.copyright}.
     </div>
 </footer>`;
+
+let pageHeader = `<div id="page-header">
+    <div class="container">
+        <div class="page-header-container">
+            <div class="page-header-left">
+                <div class="page-header-title">R.O. Arıtma Sistemleri</div>
+            </div>
+            <div class="page-header-right">
+                <ul class="page-header-breadcrumbs">
+                    <li><a href="" title="Breadcrumbs Item">Anasayfa</a></li>
+                    <li><a href="" title="Breadcrumbs Item">Ürünler</a></li>
+                    <li><span>${detaysayfa.adi}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+let otherProduct = `
+<div id="other-products">
+    <div class="container">
+        <div class="other-products">
+            <div class="other-products-left">
+                <button class="button" type="button"><i class="icon icon-sponsors-left-arrow"></i></button>
+            </div>
+            <div class="other-products-center">
+                <div id="otherProducts" class="swiper-container">
+                    <div class="swiper-wrapper">
+                     
+                        ${urunMarkalar.map((d)=> ` <div class="swiper-slide">
+                            <a class="other-products-item" href="" title="Other">
+                                <img width="92" height="74" class="other-products-item-image" src="${d.resim}" alt="Other">
+                                <span class="other-products-item-title">${d.adi}</span>
+                            </a>
+                        </div> ` ).join("")}
+                        
+                       
+                        
+                    </div>
+                </div>
+            </div>
+           
+            <div class="other-products-right">
+                <button class="button" type="button"><i class="icon icon-sponsors-right-arrow"></i></button>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+let urunListContent = `
+<div id="all-products">
+    <div class="all-products-item">
+        <div class="container">
+            <div class="row all-products-row">
+                <div class="col-md-9">
+                    <h2 class="all-products-title">Stratos</h2>
+                    <h5 class="all-products-headline">Reserve Osmosis Systems</h5>
+                    <p class="all-products-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                    </p>
+                    <img class="all-products-image" src="assets/dist/img/all-products-1.png" alt="Product">
+                    <a class="button all-products-button" href="" title="Ürünü İncele">Ürünü İncele</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all-products-item">
+        <div class="container">
+            <div class="row all-products-row">
+                <div class="col-md-9">
+                    <h2 class="all-products-title">Stratos</h2>
+                    <h5 class="all-products-headline">Reserve Osmosis Systems</h5>
+                    <p class="all-products-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                    </p>
+                    <img class="all-products-image" src="assets/dist/img/all-products-1.png" alt="Product">
+                    <a class="button all-products-button" href="" title="Ürünü İncele">Ürünü İncele</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="all-products-item">
+        <div class="container">
+            <div class="row all-products-row">
+                <div class="col-md-9">
+                    <h2 class="all-products-title">Stratos</h2>
+                    <h5 class="all-products-headline">Reserve Osmosis Systems</h5>
+                    <p class="all-products-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                    </p>
+                    <img class="all-products-image" src="assets/dist/img/all-products-1.png" alt="Product">
+                    <a class="button all-products-button" href="" title="Ürünü İncele">Ürünü İncele</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`;
+
+
+
+let urunTipiHtml = `
+<div id="product-types">
+    <div class="container">
+        <div class="product-types-container">
+            <a class="product-types-item" href="" title="Product Types Item">${detaysayfa.adi}</a>
+            <a class="product-types-item" href="" title="Product Types Item"></a>
+            <a class="product-types-item" href="" title="Product Types Item"></a>
+            <a class="product-types-item" href="" title="Product Types Item"></a>
+            
+        </div>
+    </div>
+</div>
+`;
+
+let body = $("body")
+
+if(path == "/"){
+
+
+
+
+
+
+    body.append(headerHtml)
+    body.append(sliderHtml)
+    body.append(urunlerHtml)
+    body.append(sponsorHtml)
+    body.append(ebultenHtml)
+    body.append(footerHtml)
+
+}else{
+    if(detaysayfa.type ==  "iletisim"){
+        body.append(headHtml)
+        body.append(headerHtml)
+        body.append(pageHeader)
+        body.append(urunTipiHtml)
+       // body.append(urunListContent)
+
+        body.append(footerHtml)
+    }else if (detaysayfa.type ==  "icerik"){
+
+        body.append(headHtml)
+        body.append(headerHtml)
+        body.append(pageHeader)
+        body.append(urunTipiHtml)
+       // body.append(urunListContent)
+
+        body.append(footerHtml)
+
+    }
+    else if (detaysayfa.type ==  "urunler"){
+
+        body.append(headHtml)
+        body.append(headerHtml)
+        body.append(pageHeader)
+        body.append(otherProduct)
+        body.append(urunListContent)
+
+        body.append(footerHtml)
+
+    }
+
+}
+
+
+
+
+
+
