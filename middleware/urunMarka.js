@@ -6,7 +6,7 @@ module.exports = (req,res,next)=>{
 
     cek.then((data)=>{
 
-       res.urunMarka = data    
+       req.urunMarka = data
      //  console.log(data)
        next()
     }).catch((err)=>{

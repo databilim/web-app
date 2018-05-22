@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
-
+const os = require("os");
 
 router.get('/:siteUrl', (req, res, next)=> {
     const url =  req.params;
@@ -11,15 +11,17 @@ router.get('/:siteUrl', (req, res, next)=> {
 
     menu.then((data)=>{
         if(data.type == "urunler" ){
-            res.render("urunler",{ res:res })
+            res.render("urunler",{ data:data, res:req })
         }
         if(data.type == "icerik"){
-            res.render("sayfa",{ res:res })
+
+
+
+
+            res.render("sayfa",{ data:data, res:req })
         }
         if(data.type == "iletisim"){
-            res.render("sayfa",{ res:res })
-        }else{
-            res.send("HATA ")
+            res.render("sayfa",{ data:data ,res:req })
         }
 
     }).catch((err)=>{
@@ -32,12 +34,20 @@ router.get('/:siteUrl', (req, res, next)=> {
 });
 
 /* GET home page. */
+router.get('/urun*:urundetay', (req, res, next)=> {
+
+    //res.sendFile(path.dirname(__dirname) + '/view/index.html')
+
+    res.send(req.params)
+    console.log(res.req.header)
+});
+/* GET home page. */
 router.get('/', (req, res, next)=> {
 
     //res.sendFile(path.dirname(__dirname) + '/view/index.html')
 
-    res.render("index" , { res:res })
-    //console.log(res.genelayar)
+    res.render("index" , { res:req })
+    console.log(os.hostname())
 
 
 });

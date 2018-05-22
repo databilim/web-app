@@ -1,6 +1,68 @@
 extends layout
 
 block content
+  #page-header
+    .container
+        .page-header-container
+            .page-header-left
+                .page-header-title R.O. Arıtma Sistemleri
+            .page-header-right
+                ul.page-header-breadcrumbs
+                    li
+                        a(href='', title='Breadcrumbs Item') Anasayfa
+                    li
+                        a(href='', title='Breadcrumbs Item') Ürünler
+                    li
+                        span R.O. Arıtma Sistemleri
+  #other-products
+          .container
+              .other-products
+                  .other-products-left
+                      button.button(type='button')
+                          i.icon.icon-sponsors-left-arrow
+                  .other-products-center
+                      #otherProducts.swiper-container
+                          .swiper-wrapper
+                              -for(var x = 0; x < res.urunMarka.length; x++ ){
+                              .swiper-slide
+                                  a.other-products-item.active(href='/urun/'+res.urunMarka[x].seoUrl, title='Other')
+                                      img.other-products-item-image( width='100' src=''+res.urunMarka[x].resim, alt=''+res.urunMarka[x].adi)
+                                      span.other-products-item-title #{res.urunMarka[x].adi}
+                              -}
 
-    
-    
+                  .other-products-right
+                      button.button(type='button')
+                          i.icon.icon-sponsors-right-arrow
+
+    #all-products
+        .all-products-item
+            .container
+                .row.all-products-row
+                    .col-md-9
+                        h2.all-products-title Stratos
+                        h5.all-products-headline Reserve Osmosis Systems
+                        p.all-products-description
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
+                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
+        .all-products-item
+            .container
+                .row.all-products-row
+                    .col-md-9
+                        h2.all-products-title Stratos
+                        h5.all-products-headline Reserve Osmosis Systems
+                        p.all-products-description
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
+                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
+        .all-products-item
+            .container
+                .row.all-products-row
+                    .col-md-9
+                        h2.all-products-title Stratos
+                        h5.all-products-headline Reserve Osmosis Systems
+                        p.all-products-description
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
+                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
+  include temp/sponsor

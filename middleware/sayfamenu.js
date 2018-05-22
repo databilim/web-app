@@ -6,7 +6,7 @@ module.exports = (req,res,next)=>{
 
     cek.then((data)=>{
 
-       res.sayfaMenu = data    
+       req.sayfaMenu = data
        
        next()
     }).catch((err)=>{

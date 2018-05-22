@@ -1,6 +1,17 @@
 extends layout
 
 block content
+  #page-header
+    .container
+        .page-header-container
+            .page-header-left
+                .page-header-title #{data.adi}
+            .page-header-right
+                ul.page-header-breadcrumbs
+                    li
+                        a(href='/', title='Breadcrumbs Item') Anasayfa
+                    li
+                        a(href=''+data.seoUrl, title=''+data.adi) #{data.adi}
 
    
     

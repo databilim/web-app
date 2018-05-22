@@ -6,7 +6,7 @@ module.exports = (req,res,next)=>{
 
     cek.then((data)=>{
 
-       res.slider = data    
+       req.slider = data
        //console.log(data)
        next()
     }).catch((err)=>{

@@ -6,7 +6,7 @@ module.exports = (req,res,next)=>{
 
     cek.then((data)=>{
 
-       res.firma = data    
+       req.firma = data
        next()
     }).catch((err)=>{
 

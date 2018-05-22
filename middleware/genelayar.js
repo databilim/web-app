@@ -6,7 +6,7 @@ module.exports = (req,res,next)=>{
 
     cek.then((data)=>{
 
-       res.genelayar = data    
+       req.genelayar = data
        next()
     }).catch((err)=>{
 
