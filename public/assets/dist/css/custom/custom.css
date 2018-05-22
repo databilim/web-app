@@ -2820,6 +2820,11 @@ body {
     padding: 2px 0;
     line-height: 20px;
     color: rgba(255, 255, 255, 0.5); }
+      #footer .footer .footer-list li em {
+    display: block;
+    padding: 2px 0;
+    line-height: 20px;
+    color: rgba(255, 255, 255, 0.5); }
   #footer .footer .footer-social {
     display: flex;
     align-items: center;

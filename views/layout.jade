@@ -1,0 +1,63 @@
+doctype html
+html(lang='tr')
+  head
+    // Meta
+    meta(charset='utf-8')
+    title #{res.genelayar.title}
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='theme-color', content='#fff')
+    meta(name:'keywords' contet=''+res.genelayar.keywords )
+    meta(name:'description' contet=''+res.genelayar.description )
+    // Stylesheets
+    link(rel='stylesheet', href='assets/dist/css/custom/custom.css')
+  body
+    header#header
+      .header-top
+        .container
+          .header-top-container
+            .header-top-left
+              a.header-top-phone(href='tel:'+res.firma.telefon, title=''+res.firma.telefon)
+                i.icon.icon-header-phone
+                | #{res.firma.telefon}
+            .header-top-right
+              .header-top-search
+                button.button(type='submit')
+                  i.icon.icon-header-search
+                input(type='text', placeholder='Aranacak Kelime')
+              .header-top-language
+                button.button.header-top-language-button(type='button')
+                  | Türkçe 
+                  i.icon.icon-header-language-caret
+                .header-top-language-dropdown
+                  a.header-top-language-dropdown-link(href='', title='Language') English
+                  a.header-top-language-dropdown-link(href='', title='Language') Türkçe
+      .header-bottom
+        .container
+          .header-bottom-container
+            .header-bottom-logo
+              a(href='', title='AquaTurk')
+                img(src='assets/dist/img/logo.png', alt='AquaTurk')
+            .header-bottom-menu
+              nav
+                ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
+                  li.header-bottom-menu-list-item
+                    a(href='/', title='Menu Item') Anasayfa
+
+                    - for( var x = 0; x < res.sayfaMenu.length; x++ ){
+                  li.header-bottom-menu-list-item
+                    a(href=''+res.sayfaMenu[x].seoUrl, title='Menu Item') #{res.sayfaMenu[x].adi}   
+                   -}
+
+                  
+                button.button.button-mobile-menu.hidden-lg.hidden-md(type='button')
+                  i.icon.icon-header-bars
+        .header-bottom-dropdown.hidden-lg.hidden-md
+          ul.header-bottom-dropdown-list
+            -for(var x = 0; x < res.sayfaMenu.length; x++){
+            li.header-bottom-dropdown-list-item
+              a(href=''+res.sayfaMenu[x].seoUrl, title='Menu Item') #{res.sayfaMenu[x].adi}   
+             -}
+            
+            
+      block content
+      include footer

@@ -1,0 +1,52 @@
+
+footer#footer
+      .footer
+        .container
+          .row
+            .col-md-3
+              h3.footer-title AQUATÜRK SAYFALAR
+              ul.footer-list
+                li
+                  a(href='/', title=''+res.genelayar.title) Anasayfa
+                
+                -for( var x = 0; x < res.sayfaMenu.length; x++ ){
+                li
+                  a(href=''+res.sayfaMenu[x].seoUrl , title=''+res.sayfaMenu[x].adi ) #{res.sayfaMenu[x].adi}  
+                -}
+                
+               
+                
+            .col-md-3
+              h3.footer-title AQUATÜRK MODELLERİ
+              ul.footer-list
+                
+                -for(var x=0;  x < res.urunMarka.length; x++   ){
+                li
+                  a(href='', title=''+res.urunMarka[x].adi) #{res.urunMarka[x].adi}
+                -}
+                
+               
+                
+            .col-md-3
+              h3.footer-title AQUATÜRK İLETİŞİM
+              ul.footer-list
+                li
+                  em Adress : #{res.firma.adres}
+                li
+                  em Tel : #{res.firma.telefon}
+               
+            .col-md-3
+              h3.footer-title Bizi Takip Edin
+              .footer-social
+                a.button(href='', title='Social')
+                  i.icon.icon-footer-facebook
+                a.button(href='', title='Social')
+                  i.icon.icon-footer-twitter
+                a.button(href='', title='Social')
+                  i.icon.icon-footer-instagram
+      .copyright
+        | Copyright © 2018 #{res.genelayar.copyright} 
+script(src="/socket.io/socket.io.js")
+script(src='assets/dist/js/bundle/bundle.min.js')
+script(src='js/app.js')
+

@@ -6,6 +6,8 @@ const httpGet = (theUrl)=>
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     return JSON.parse(xmlHttp.responseText);
+
+
 }
 
 let s = 0;
@@ -16,7 +18,11 @@ let genelAyar = httpGet("/doc/api/genelAyar");
 let firma = httpGet("/doc/api/firma");
 let sayfaMenu = httpGet("/doc/api/sayfamenu");
 let sliders = httpGet("/doc/api/slider");
+
+
 let detaysayfa = httpGet("/doc/api"+path);
+
+    console.log("satır 25 Detay", detaysayfa)
 let urunMarkalar = httpGet("/doc/api/urun/markalar");
 console.log(urunMarkalar)
 
@@ -79,18 +85,12 @@ let headerHtml = `<header id="header">
         </div>
         <div class="header-bottom-dropdown hidden-lg hidden-md">
             <ul class="header-bottom-dropdown-list">
-                <li class="header-bottom-dropdown-list-item">
-                    <a href="" title="Menu Item">Anasayfa</a>
-                </li>
-                <li class="header-bottom-dropdown-list-item">
-                    <a href="" title="Menu Item">Hakkımızda</a>
-                </li>
-                <li class="header-bottom-dropdown-list-item">
-                    <a href="" title="Menu Item">Ürünler</a>
-                </li>
-                <li class="header-bottom-dropdown-list-item">
-                    <a href="" title="Menu Item">İletişim</a>
-                </li>
+            <li class="header-bottom-dropdown-list-item"><a href="/" title="Menu Item">Anasayfa</a></li>              
+${sayfaMenu.map((d)=> d.lokasyon == "header" ?  `<li class="header-bottom-dropdown-list-item">
+                    <a href="${d.seoUrl}.html" title="Menu Item">${d.adi}</a>
+                </li>` :'').join("")}
+              
+            
             </ul>
         </div>
     </div>
@@ -113,7 +113,7 @@ let sliderHtml =
                             <p class="hero-item-content-text">
                                 ${sdata.info}
                             </p>
-                            <img class="hero-item-content-image" src="${sdata.resim}" alt="Hero Image">
+                            <img class="hero-item-content-image" src="${sdata.resim}" alt="${ sdata.title}">
                         </div>
                     </div>
                 </div>
@@ -192,13 +192,10 @@ let sponsorHtml = `<div id="sponsors">
                 <div id="sponsorSlide" class="swiper-container">
                     <div class="swiper-wrapper">
                         
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-1.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-2.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-3.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-4.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-5.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-6.png" alt="Sponsor"></div></div>
-                        <div class="swiper-slide"><div class="sponsors-item"><img src="assets/dist/img/sponsors-7.png" alt="Sponsor"></div></div>
+                        ${ urunMarkalar.map((d)=> `<div class="swiper-slide"><div class="sponsors-item"><img src="${d.logo}" alt="${d.adi}"></div></div>` ).join("") }
+                        
+                        
+                      
                     </div>
                 </div>
             </div>
@@ -236,7 +233,11 @@ let footerHtml = `<footer id="footer">
                 <div class="col-md-3">
                     <h3 class="footer-title">Aquatürk Sayfalar</h3>
                     <ul class="footer-list">
-                        <li><a href="" title="List Item">Anasayfa</a></li>
+                      <li><a href="/" title="Anasayfa">Anasayfa</a></li>  
+                        ${ sayfaMenu.map((d)=> d.lokasyon == "header" ? 
+    `<li><a href="${d.seoUrl}.html" title="${ d.adi }">${ d.adi }</a></li>` : "" ).join("") }
+                        
+                        
                      
                      
                     </ul>
@@ -244,16 +245,16 @@ let footerHtml = `<footer id="footer">
                 <div class="col-md-3">
                     <h3 class="footer-title">Aquatürk Modelleri</h3>
                     <ul class="footer-list">
-                        <li><a href="" title="List Item">Stratos</a></li>
+                        ${urunMarkalar.map((d)=>`<li><a href="" title="${d.adi}">${d.adi}</a></li>`).join("")}
+                        
                       
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <h3 class="footer-title">Aquaturk İletişim </h3>
                     <ul class="footer-list">
-                        <li><a href="" title="List Item">Stratos</a></li>
-                        <li><a href="" title="List Item">Stilmax</a></li>
-                        <li><a href="" title="List Item">Ecoplus</a></li>
+                        <li><em>Tel : ${firma.telefon} </em></li>
+                        <li><em>Adres : ${firma.adres} </em></li>
                          </ul>
                 </div>
                 <div class="col-md-3">
@@ -386,6 +387,7 @@ let urunTipiHtml = `
 `;
 
 let body = $("body")
+let head = $("head")
 
 if(path == "/"){
 
@@ -394,6 +396,7 @@ if(path == "/"){
 
 
 
+    head.append(headHtml)
     body.append(headerHtml)
     body.append(sliderHtml)
     body.append(urunlerHtml)
@@ -403,7 +406,7 @@ if(path == "/"){
 
 }else{
     if(detaysayfa.type ==  "iletisim"){
-        body.append(headHtml)
+        head.append(headHtml)
         body.append(headerHtml)
         body.append(pageHeader)
         body.append(urunTipiHtml)
@@ -412,7 +415,7 @@ if(path == "/"){
         body.append(footerHtml)
     }else if (detaysayfa.type ==  "icerik"){
 
-        body.append(headHtml)
+        head.append(headHtml)
         body.append(headerHtml)
         body.append(pageHeader)
         body.append(urunTipiHtml)
@@ -423,7 +426,7 @@ if(path == "/"){
     }
     else if (detaysayfa.type ==  "urunler"){
 
-        body.append(headHtml)
+        head.append(headHtml)
         body.append(headerHtml)
         body.append(pageHeader)
         body.append(otherProduct)

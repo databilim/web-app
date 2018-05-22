@@ -1,0 +1,19 @@
+#sponsors
+      .container
+        .sponsors
+          .sponsors-left
+            button.button(type='button')
+              i.icon.icon-sponsors-left-arrow
+          .sponsors-center
+            #sponsorSlide.swiper-container
+              .swiper-wrapper
+                -for(var x = 0; x < res.urunMarka.length; x++){
+                .swiper-slide
+                  .sponsors-item
+                    img(src=''+res.urunMarka[x].logo, alt=''+res.urunMarka[x].adi)
+                -} 
+                
+                
+          .sponsors-right
+            button.button(type='button')
+              i.icon.icon-sponsors-right-arrow
