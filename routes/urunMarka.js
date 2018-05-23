@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const UrunMarka = require("../model/UrunMarka");
-const urun = require("../model/Urun");
 const slugify = require('slugify')
 
 
@@ -10,12 +9,9 @@ router.get('/', (req, res, next)=> {
     res.send('respond with a resource');
 });
 
-router.post("/",(req,res)=>{
+router.post("/urunMarka",(req,res)=>{
     console.log(req.body)
-
-
-
-  /*  const seoUrl = slugify(req.body.adi);
+    const seoUrl = slugify(req.body.adi);
         req.body.seoUrl = seoUrl;
 
     const  urunmarka =  new UrunMarka(req.body)
@@ -26,12 +22,12 @@ router.post("/",(req,res)=>{
     }).catch((err)=>{
 
         res.json(err)
-    })*/
+    })
 
 
 })
 
-router.put("/:urumMarka_id",(req,res)=>{
+router.put("/urunMarka/:urumMarka_id",(req,res)=>{
     const seoUrl = slugify(req.body.adi)
     req.body.seoUrl = seoUrl;
     const promise = UrunMarka.findByIdAndUpdate(
@@ -56,7 +52,7 @@ router.put("/:urumMarka_id",(req,res)=>{
 
 })
 
-router.delete("/:urumMarka_id",(req,res)=>{
+router.delete("/urunMarka/:urumMarka_id",(req,res)=>{
     const promise = UrunMarka.findByIdAndRemove(req.params.urumMarka_id)
 
     promise.then((data)=>{

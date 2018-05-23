@@ -1,8 +1,7 @@
 const mongoose      =   require("mongoose");
 const Schema        =   mongoose.Schema;
 
-const UrunSchema = new Schema({
-    urunMarka_id : Schema.Types.ObjectId,
+const IcerikSchema = new Schema({
     dil:{
       type:String,
 
@@ -17,13 +16,11 @@ const UrunSchema = new Schema({
     icerik:{
         type:String,
     },
-    aciklama:{
-        type:String,
-    },
+
     keywords:[],
 
     resim:[],
-    kategori:[],
+
 
     durum:Number,
     createAt:{
@@ -38,4 +35,4 @@ const UrunSchema = new Schema({
 
 })
 
-module.exports = mongoose.model('urun', UrunSchema)
+module.exports = mongoose.model('icerik', IcerikSchema)

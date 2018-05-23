@@ -17,8 +17,10 @@ const index = require('./routes/index');
 const doc = require('./routes/docApi');
 const post = require('./routes/post');
 const urun = require('./routes/urun');
+const urunmarka = require('./routes/urunMarka');
 
 const sayfaMenu = require('./routes/sayfaMenu');
+const slider = require('./routes/slider');
 const kategori = require('./routes/kategori');
 const genelayar = require('./routes/genelayar');
 const firma = require('./routes/firma');
@@ -59,9 +61,11 @@ app.use('/doc/post', post);
 app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
 app.use('/api/urun', urun);
+app.use('/api/urunMarka', urunmarka);
 app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
 app.use('/api/mail', mail);
+app.use('/api/slider', slider);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
