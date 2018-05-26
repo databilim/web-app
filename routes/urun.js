@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UrunMarka = require("../model/UrunMarka");
-const urun = require("../model/Urun");
+const Urun = require("../model/Urun");
 const slugify = require('slugify')
 
 
@@ -13,12 +13,21 @@ router.get('/', (req, res, next)=> {
 router.post("/",(req,res)=>{
     console.log(req.body)
 
+    const seoUrl = slugify(req.body.baslik);
+    req.body.seoUrl = seoUrl;
+
+    const  urun =  new Urun(req.body)
+    const  urunPromise = urun.save();
+    urunPromise.then((data)=>{
+
+        res.json({status:1,data:data, message:"Eklendi Ürünler Tablosuna "})
+    }).catch((err)=>{
+
+        res.json(err)
+    })
+  /*
 
 
-  /*  const seoUrl = slugify(req.body.adi);
-        req.body.seoUrl = seoUrl;
-
-    const  urunmarka =  new UrunMarka(req.body)
     const  promise = urunmarka.save()
     promise.then((data)=>{
 

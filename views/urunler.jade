@@ -35,34 +35,20 @@ block content
                           i.icon.icon-sponsors-right-arrow
 
     #all-products
+
+        -for(var x = 0; x < urunler.length; x ++ ){
         .all-products-item
             .container
                 .row.all-products-row
                     .col-md-9
-                        h2.all-products-title Stratos
-                        h5.all-products-headline Reserve Osmosis Systems
+                        h2.all-products-title #{urunler[x].baslik}
+                        h5.all-products-headline #{urunler[x].icerik}
                         p.all-products-description
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
-                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
-                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
-        .all-products-item
-            .container
-                .row.all-products-row
-                    .col-md-9
-                        h2.all-products-title Stratos
-                        h5.all-products-headline Reserve Osmosis Systems
-                        p.all-products-description
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
-                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
-                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
-        .all-products-item
-            .container
-                .row.all-products-row
-                    .col-md-9
-                        h2.all-products-title Stratos
-                        h5.all-products-headline Reserve Osmosis Systems
-                        p.all-products-description
-                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
-                        img.all-products-image(src='assets/dist/img/all-products-1.png', alt='Product')
-                        a.button.all-products-button(href='', title='Ürünü İncele') Ürünü İncele
+                            | #{urunler[x].aciklama}
+                        img.all-products-image(src='images/'+urunler[x].resim, alt='Product')
+                        a.button.all-products-button(href='/urun/'+urunler[x].seoUrl+'/'+urunler[x]._id, title='Ürünü İncele') Ürünü İncele #{console.log(urunler)}
+
+        -}
+
+
   include temp/sponsor

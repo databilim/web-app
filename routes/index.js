@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
+const Urun = require('../model/Urun');
 const os = require("os");
 
 router.get('/:siteUrl', (req, res, next)=> {
@@ -11,7 +12,19 @@ router.get('/:siteUrl', (req, res, next)=> {
 
     menu.then((data)=>{
         if(data.type == "urunler" ){
-            res.render("urunler",{ data:data, res:req })
+
+            const urun =  Urun.find();
+
+
+            urun.then((urundata)=>{
+                res.render("urunler",{urunler:urundata ,data:data, res:req })
+
+            }).catch((err)=>{
+
+            })
+
+
+
         }
         if(data.type == "icerik"){
 
@@ -34,12 +47,12 @@ router.get('/:siteUrl', (req, res, next)=> {
 });
 
 /* GET home page. */
-router.get('/urun*:urundetay', (req, res, next)=> {
+router.get('/urun/:urun/:urunid', (req, res, next)=> {
 
     //res.sendFile(path.dirname(__dirname) + '/view/index.html')
 
-    res.send(req.params)
-    console.log(res.req.header)
+    res.render("urundetay",{ res:req })
+    console.log(res.req.genelayar)
 });
 /* GET home page. */
 router.get('/', (req, res, next)=> {

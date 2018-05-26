@@ -20,10 +20,36 @@ const UrunSchema = new Schema({
     aciklama:{
         type:String,
     },
-    keywords:[],
+    keywords:{
+        type:String
+    },
 
-    resim:[],
-    kategori:[],
+    description:{
+        type:String
+    },
+
+    resim: {
+        type:String
+    },
+    resim2: {
+        type:String
+    },
+
+     resim3: {
+        type:String
+    },
+
+     resim4: {
+        type:String
+    },
+
+     resim5: {
+        type:String
+    },
+
+    kategori:{
+        type:String
+    },
 
     durum:Number,
     createAt:{

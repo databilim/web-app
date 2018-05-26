@@ -1,7 +1,115 @@
 extends layout
 
 block content
+ #page-header
+        .container
+            .page-header-container
+                .page-header-left
+                    .page-header-title R.O. Arıtma Sistemleri
+                .page-header-right
+                    ul.page-header-breadcrumbs
+                        li
+                            a(href='', title='Breadcrumbs Item') Anasayfa
+                        li
+                            a(href='', title='Breadcrumbs Item') Ürünler
+                        li
+                            span R.O. Arıtma Sistemleri
+ #product-types
+    .container
+        .product-types-container
+            a.product-types-item(href='', title='Product Types Item') STRATOS STANDART
+            a.product-types-item(href='', title='Product Types Item')
+            a.product-types-item(href='', title='Product Types Item')
+            a.product-types-item(href='', title='Product Types Item')
+ #details
+    .container
+        .row.details-row
+            .col-lg-6.col-md-6
+                h2.details-title Stratos Standart
+                p.details-description Reserve Osmosis Systems
+                p.details-text
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ultricies finibus magna, nec lacinia ex imperdiet ut. Duis sit amet tincidunt mi. Nunc non mi ac purus laoreet ultricies non sit amet enim.
+                img.details-image(src='/assets/dist/img/details.png', alt='Detail Image')
+            .col-lg-4.col-md-5
+                .details-buy
+                    .details-buy-price
+                        | $188
+                    .details-buy-button
+                        a.button(href='', title='Satın Al') Satın Al
+                ul.details-list
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+                    li
+                        span Filtre
+                        span Standart Inline 5.mic Sediment
+ #properties
+    .container
+        h1.properties-title Filtre
+        .row
+            .col-md-6
+                .properties-item
+                    .properties-item-icon
+                        .properties-item-icon-inner
+                            i.icon.icon-properties
+                    .properties-item-content
+                        | Standart Inline 5.mic Sediment
+            .col-md-6
+                .properties-item
+                    .properties-item-icon
+                        .properties-item-icon-inner
+                            i.icon.icon-properties
+                    .properties-item-content
+                        | Standart Inline 5.mic Sediment
+            .col-md-6
+                .properties-item
+                    .properties-item-icon
+                        .properties-item-icon-inner
+                            i.icon.icon-properties
+                    .properties-item-content
+                        | Standart Inline 5.mic Sediment
+            .col-md-6
+                .properties-item
+                    .properties-item-icon
+                        .properties-item-icon-inner
+                            i.icon.icon-properties
+                    .properties-item-content
+                        | Standart Inline 5.mic Sediment
+ #membran
+    .container
+        i.icon.icon-membran
+        h2.membran-title Membran
+        h2.membran-text 75 Gpd. HFT
+ #details-product-types
+    .details-product-types-left
+        | Yıldız
+        strong Musluk
+        img(src='/assets/dist/img/details-product-type-1.png', alt='Title')
+    .details-product-types-right
+        img(src='/assets/dist/img/details-product-type-2.png', alt='Title')
+        |         Eco
+        strong Lüks
+ include temp/sponsor
+ include temp/ebulten
 
-
-
-include temp/sponsor

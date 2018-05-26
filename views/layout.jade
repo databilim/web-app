@@ -8,8 +8,8 @@ html(lang='tr')
     meta(name='theme-color', content='#fff')
     meta(name:'keywords' contet=''+res.genelayar.keywords )
     meta(name:'description' contet=''+res.genelayar.description )
-    // Stylesheets
-    link(rel='stylesheet', href='assets/dist/css/custom/custom.css')
+
+    link(rel='stylesheet', href=res.protocol+'://localhost:3000/assets/dist/css/custom/custom.css')
   body
     header#header
       .header-top
@@ -36,7 +36,7 @@ html(lang='tr')
           .header-bottom-container
             .header-bottom-logo
               a(href='', title='AquaTurk')
-                img(src='assets/dist/img/logo.png', alt='AquaTurk')
+                img(src=res.protocol+'://'+res.genelayar.siteUrl+'/assets/dist/img/logo.png', alt='AquaTurk')
             .header-bottom-menu
               nav
                 ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
@@ -45,7 +45,7 @@ html(lang='tr')
 
                     - for( var x = 0; x < res.sayfaMenu.length; x++ ){
                   li.header-bottom-menu-list-item
-                    a(href=''+res.sayfaMenu[x].seoUrl, title='Menu Item') #{res.sayfaMenu[x].adi}   
+                    a(href='/'+res.sayfaMenu[x].seoUrl, title='Menu Item') #{res.sayfaMenu[x].adi}
                    -}
 
                   
