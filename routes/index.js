@@ -49,10 +49,21 @@ router.get('/:siteUrl', (req, res, next)=> {
 /* GET home page. */
 router.get('/urun/:urun/:urunid', (req, res, next)=> {
 
-    //res.sendFile(path.dirname(__dirname) + '/view/index.html')
+    const uruncek = Urun.findOne({_id:req.params.urunid});
+    uruncek.then((urunData)=>{
 
-    res.render("urundetay",{ res:req })
-    console.log(res.req.genelayar)
+        console.log("Cello ",urunData)
+
+        res.render("urundetay",{ urun:urunData, res:req })
+
+    }).catch((err)=>{
+
+        res.json(err)
+    })
+
+
+
+    console.log(req.params)
 });
 /* GET home page. */
 router.get('/', (req, res, next)=> {

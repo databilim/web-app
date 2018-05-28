@@ -23,7 +23,7 @@ block content
                   .other-products-center
                       #otherProducts.swiper-container
                           .swiper-wrapper
-                              -for(var x = 0; x < res.urunMarka.length; x++ ){
+                             -for(var x = 0; x < res.urunMarka.length; x++ ){
                               .swiper-slide
                                   a.other-products-item.active(href='/marka/'+res.urunMarka[x].seoUrl, title='Other')
                                       img.other-products-item-image( width='100' src=''+res.urunMarka[x].resim, alt=''+res.urunMarka[x].adi)
@@ -52,3 +52,4 @@ block content
 
 
   include temp/sponsor
+  include temp/ebulten

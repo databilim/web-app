@@ -7,7 +7,7 @@ module.exports = (req,res,next)=>{
     cek.then((data)=>{
 
        req.urunMarka = data
-     //  console.log(data)
+     // console.log(data)
        next()
     }).catch((err)=>{
 
