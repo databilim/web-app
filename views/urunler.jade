@@ -25,7 +25,7 @@ block content
                           .swiper-wrapper
                               -for(var x = 0; x < res.urunMarka.length; x++ ){
                               .swiper-slide
-                                  a.other-products-item.active(href='/urun/'+res.urunMarka[x].seoUrl, title='Other')
+                                  a.other-products-item.active(href='/marka/'+res.urunMarka[x].seoUrl, title='Other')
                                       img.other-products-item-image( width='100' src=''+res.urunMarka[x].resim, alt=''+res.urunMarka[x].adi)
                                       span.other-products-item-title #{res.urunMarka[x].adi}
                               -}
@@ -46,7 +46,7 @@ block content
                         p.all-products-description
                             | #{urunler[x].aciklama}
                         img.all-products-image(src='images/'+urunler[x].resim, alt='Product')
-                        a.button.all-products-button(href='/urun/'+urunler[x].seoUrl+'/'+urunler[x]._id, title='Ürünü İncele') Ürünü İncele #{console.log(urunler)}
+                        a.button.all-products-button(href='/urun/'+urunler[x].seoUrl+'/'+urunler[x]._id, title='Ürünü İncele') Ürünü İncele'
 
         -}
 

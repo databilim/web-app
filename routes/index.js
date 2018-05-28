@@ -11,7 +11,7 @@ router.get('/:siteUrl', (req, res, next)=> {
     const menu = SayfaMenu.findOne({seoUrl:url.siteUrl})
 
     menu.then((data)=>{
-        if(data.type == "urunler" ){
+        if(data.type === "urunler" ){
 
             const urun =  Urun.find();
 
@@ -26,14 +26,14 @@ router.get('/:siteUrl', (req, res, next)=> {
 
 
         }
-        if(data.type == "icerik"){
+        if(data.type === "icerik"){
 
 
 
 
             res.render("sayfa",{ data:data, res:req })
         }
-        if(data.type == "iletisim"){
+        if(data.type === "iletisim"){
             res.render("sayfa",{ data:data ,res:req })
         }
 
@@ -60,8 +60,8 @@ router.get('/', (req, res, next)=> {
     //res.sendFile(path.dirname(__dirname) + '/view/index.html')
 
     res.render("index" , { res:req })
-    console.log(os.hostname())
 
+    console.log(req.params)
 
 });
 
