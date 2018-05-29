@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  #page-header
+    .container
+        .page-header-container
+            .page-header-left
+                .page-header-title #{data.adi}
+            .page-header-right
+                ul.page-header-breadcrumbs
+                    li
+                        a(href='/', title='Breadcrumbs Item') Anasayfa
+                    li
+                        a(href=''+data.seoUrl, title=''+data.adi) #{data.adi}
+
+  #product-types
+     .container
+       .product-types-container
+
+
+  #details
+
+          .container
+              .row.details-row
+                  .col-lg-6.col-md-6
+                      h2.details-title Harita
+                      #maps aasdasd
+
+                  .col-lg-4.col-md-5
+                      .details-buy
+                          .details-buy-price
+                              | Adres
+
+  include temp/ebulten

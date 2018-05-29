@@ -20,6 +20,7 @@ const doc = require('./routes/docApi');
 const post = require('./routes/post');
 const urun = require('./routes/urun');
 const urunmarka = require('./routes/urunMarka');
+const urunOzellik = require('./routes/urunOzellik');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const slider = require('./routes/slider');
@@ -64,6 +65,7 @@ app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
 app.use('/api/urun', urun);
 app.use('/api/urunMarka', urunmarka);
+app.use('/api/urunOzellik', urunOzellik);
 app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
 app.use('/api/mail', mail);

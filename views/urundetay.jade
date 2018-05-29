@@ -5,7 +5,7 @@ block content
         .container
             .page-header-container
                 .page-header-left
-                    .page-header-title R.O. Arıtma Sistemleri
+                    .page-header-title #{urun.baslik}
                 .page-header-right
                     ul.page-header-breadcrumbs
                         li
@@ -13,11 +13,11 @@ block content
                         li
                             a(href='', title='Breadcrumbs Item') Ürünler
                         li
-                            span R.O. Arıtma Sistemleri
+                            span #{urun._id.baslik}
  #product-types
     .container
         .product-types-container
-            a.product-types-item(href='', title='Product Types Item') STRATOS STANDART
+            a.product-types-item(href='', title='Product Types Item') #{urun._id.baslik}
             a.product-types-item(href='', title='Product Types Item')
             a.product-types-item(href='', title='Product Types Item')
             a.product-types-item(href='', title='Product Types Item')
@@ -25,11 +25,11 @@ block content
     .container
         .row.details-row
             .col-lg-6.col-md-6
-                h2.details-title #{urun.baslik}
-                p.details-description #{urun.icerik}
+                h2.details-title #{urun._id.baslik}
+                p.details-description #{urun._id.icerik}
                 p.details-text
-                    | #{urun.aciklama}
-                img.details-image(src='/assets/dist/img/details.png', alt='Detail Image')
+                    | #{urun._id.aciklama}
+                img.details-image(src='/images/'+urun._id.resim, alt='Detail Image')
             .col-lg-4.col-md-5
                 .details-buy
                     .details-buy-price
@@ -37,79 +37,65 @@ block content
                     .details-buy-button
                         a.button(href='', title='Satın Al') Satın Al
                 ul.details-list
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
-                    li
-                        span Filtre
-                        span Standart Inline 5.mic Sediment
+                    - var ozellik = urun.urunozellik;
+                      -for(var x = 0 ; x < ozellik.length; x++){
+                       -if(ozellik[x].grupAdi==="tum"){
+                       li
+                           span #{ozellik[x].adi} :
+                           span #{ozellik[x].aciklama}
+                       -}
+                      -}
+
  #properties
     .container
         h1.properties-title Filtre
         .row
+            -for(var x = 0 ; x < ozellik.length; x++){
+            -if(ozellik[x].grupAdi==="filtre"){
             .col-md-6
                 .properties-item
                     .properties-item-icon
                         .properties-item-icon-inner
                             i.icon.icon-properties
                     .properties-item-content
-                        | Standart Inline 5.mic Sediment
-            .col-md-6
-                .properties-item
-                    .properties-item-icon
-                        .properties-item-icon-inner
-                            i.icon.icon-properties
-                    .properties-item-content
-                        | Standart Inline 5.mic Sediment
-            .col-md-6
-                .properties-item
-                    .properties-item-icon
-                        .properties-item-icon-inner
-                            i.icon.icon-properties
-                    .properties-item-content
-                        | Standart Inline 5.mic Sediment
-            .col-md-6
-                .properties-item
-                    .properties-item-icon
-                        .properties-item-icon-inner
-                            i.icon.icon-properties
-                    .properties-item-content
-                        | Standart Inline 5.mic Sediment
+                        | #{ozellik[x].aciklama}
+            -}
+            -}
+
+
  #membran
     .container
         i.icon.icon-membran
-        h2.membran-title Membran
-        h2.membran-text 75 Gpd. HFT
+        -for(var x = 0 ; x < ozellik.length; x++){
+        -if(ozellik[x].grupAdi==="membran"){
+        h2.membran-title #{ozellik[x].adi}
+        h2.membran-text #{ozellik[x].aciklama}
+        -}
+        -}
+
  #details-product-types
-    .details-product-types-left
-        | Yıldız
-        strong Musluk
-        img(src='/assets/dist/img/details-product-type-1.png', alt='Title')
-    .details-product-types-right
-        img(src='/assets/dist/img/details-product-type-2.png', alt='Title')
-        |         Eco
-        strong Lüks
+     -var sy =0;
+     -for(var x = 0 ; x < ozellik.length; x++){
+     -if(ozellik[x].grupAdi==="musluk"){ sy++
+     -if(sy === 1 ){
+     .details-product-types-left
+         | #{ozellik[x].adi}
+         strong Musluk
+         img(src='/assets/dist/img/details-product-type-1.png', alt='Title')
+
+     -}else{
+     .details-product-types-right
+         img(src='/assets/dist/img/details-product-type-2.png', alt='Title')
+         |         #{ozellik[x].adi}
+         strong Musluk
+
+     -}
+
+
+     -}
+     -}
+
+
  include temp/sponsor
  include temp/ebulten
 

@@ -4,6 +4,7 @@ const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
 const Urun = require('../model/Urun');
 const os = require("os");
+const mongoose      =   require("mongoose");
 
 router.get('/:siteUrl', (req, res, next)=> {
     const url =  req.params;
@@ -34,7 +35,7 @@ router.get('/:siteUrl', (req, res, next)=> {
             res.render("sayfa",{ data:data, res:req })
         }
         if(data.type === "iletisim"){
-            res.render("sayfa",{ data:data ,res:req })
+            res.render("iletisim",{ data:data ,res:req })
         }
 
     }).catch((err)=>{
@@ -49,12 +50,63 @@ router.get('/:siteUrl', (req, res, next)=> {
 /* GET home page. */
 router.get('/urun/:urun/:urunid', (req, res, next)=> {
 
-    const uruncek = Urun.findOne({_id:req.params.urunid});
-    uruncek.then((urunData)=>{
+    const uruncek = Urun.aggregate([
+        {
+            $match:{
+                "_id":mongoose.Types.ObjectId(req.params.urunid)
+            }
+        },
 
-        console.log("Cello ",urunData)
+        ﻿{
 
-        res.render("urundetay",{ urun:urunData, res:req })
+            $lookup:{
+                from:"urunozeliks",
+                    localField:'_id',
+                    foreignField:'urun_id',
+                    as:'urunozeliks'
+            }
+        },
+        {
+            $unwind:{
+                path:'$urunozeliks',
+                    preserveNullAndEmptyArrays : true, //  true olunca filmi olmayanlarda listelenir
+            }
+        },
+        {
+
+            $group:{
+                _id:{
+                    _id:'$_id',
+                        dil:'$dil',
+                        baslik:'$baslik',
+                        resim:'$resim',
+                        resim2:'$resim2',
+                        resim3:'$resim3',
+                        resim4:'$resim4',
+                        resim5:'$resim5',
+                        icerik:'$icerik',
+                        aciklama:'$aciklama',
+                        durum:'$durum',
+                        kategori:'$kategori',
+                        keywords:'$keywords',
+                        description:'$description',
+                        fiyat:'$fiyat',
+                },
+                urunozellik:{
+                    $push:'$urunozeliks',
+                }
+            },
+
+
+        },
+
+    ])
+
+   uruncek.then((urunData)=>{
+
+
+        res.render("urundetay",{ urun:urunData[0], res:req })
+
 
     }).catch((err)=>{
 
@@ -63,7 +115,6 @@ router.get('/urun/:urun/:urunid', (req, res, next)=> {
 
 
 
-    console.log(req.params)
 });
 /* GET home page. */
 router.get('/', (req, res, next)=> {

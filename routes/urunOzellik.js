@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UrunMarka = require("../model/UrunMarka");
-const Urun = require("../model/Urun");
+const UrunOzellik = require("../model/UrunOzellik");
 const slugify = require('slugify')
 
 
@@ -13,14 +13,11 @@ router.get('/', (req, res, next)=> {
 router.post("/",(req,res)=>{
     console.log(req.body)
 
-    const seoUrl = slugify(req.body.baslik);
-    req.body.seoUrl = seoUrl;
+    const  urunozellik =  new UrunOzellik(req.body)
+    const  urunOzellikPromise = urunozellik.save();
+    urunOzellikPromise.then((data)=>{
 
-    const  urun =  new Urun(req.body)
-    const  urunPromise = urun.save();
-    urunPromise.then((data)=>{
-
-        res.json({status:1,data:data, message:"Eklendi Ürünler Tablosuna "})
+        res.json({status:1,data:data, message:"Eklendi Ürünler Özellik  Tablosuna "})
     }).catch((err)=>{
 
         res.json(err)
@@ -29,14 +26,10 @@ router.post("/",(req,res)=>{
 
 })
 
-router.put("/:urun_id",(req,res)=>{
+router.put("/:urunOzellik_id",(req,res)=>{
 
-
-
-   const seoUrl = slugify(req.body.baslik)
-    req.body.seoUrl = seoUrl;
-    const promise = Urun.findByIdAndUpdate(
-        req.params.urun_id,
+    const promise = UrunOzellik.findByIdAndUpdate(
+        req.params.urunOzellik_id,
         req.body,
         {
             new : true
@@ -50,14 +43,15 @@ router.put("/:urun_id",(req,res)=>{
 
     }).catch((err)=>{
 
-        res.json({error:{message:err.message ="Bir hata oluştu ÜRN Ekle  ",code:66 }})
+        res.json({error:{message:err.message ="Bir hata oluştu ÜRN Özellik Ekle  ",code:66 }})
     })
+
 
 
 })
 
-router.delete("/:urun_id",(req,res)=>{
-    const promise = Urun.findByIdAndRemove(req.params.urun_id)
+router.delete("/:urunOzellik_id",(req,res)=>{
+    const promise = UrunOzellik.findByIdAndRemove(req.params.urunOzellik_id)
 
     promise.then((data)=>{
 

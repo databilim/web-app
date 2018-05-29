@@ -50,6 +50,9 @@ const UrunSchema = new Schema({
     kategori:{
         type:String
     },
+    fiyat:{
+        type:String
+    },
 
     durum:Number,
     createAt:{
