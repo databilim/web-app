@@ -102,4 +102,6 @@ router.get('/urun/markalar', (req, res, next)=> {
 });
 
 
+
+
 module.exports = router;

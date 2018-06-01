@@ -2,6 +2,8 @@ const mongoose      =   require("mongoose");
 const Schema        =   mongoose.Schema;
 
 const IcerikSchema = new Schema({
+    menu_id: Schema.Types.ObjectId,
+
     dil:{
       type:String,
 
@@ -16,10 +18,17 @@ const IcerikSchema = new Schema({
     icerik:{
         type:String,
     },
+    description:{
+        type:String,
+    },
 
-    keywords:[],
+    keywords:{
+        type:String,
+    },
 
-    resim:[],
+    resim:{
+        type:String,
+    },
 
 
     durum:Number,

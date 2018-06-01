@@ -53,6 +53,9 @@ const UrunSchema = new Schema({
     fiyat:{
         type:String
     },
+  satinalUrl:{
+        type:String
+    },
 
     durum:Number,
     createAt:{

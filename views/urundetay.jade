@@ -9,7 +9,7 @@ block content
                 .page-header-right
                     ul.page-header-breadcrumbs
                         li
-                            a(href='', title='Breadcrumbs Item') Anasayfa
+                            a(href='/', title='Breadcrumbs Item') Anasayfa
                         li
                             a(href='', title='Breadcrumbs Item') Ürünler
                         li
@@ -33,9 +33,9 @@ block content
             .col-lg-4.col-md-5
                 .details-buy
                     .details-buy-price
-                        | $188
+                        | #{urun._id.fiyat} $
                     .details-buy-button
-                        a.button(href='', title='Satın Al') Satın Al
+                        a.button(href=''+urun._id.satinalUrl, title='Satın Al') Satın Al
                 ul.details-list
                     - var ozellik = urun.urunozellik;
                       -for(var x = 0 ; x < ozellik.length; x++){
@@ -81,11 +81,11 @@ block content
      .details-product-types-left
          | #{ozellik[x].adi}
          strong Musluk
-         img(src='/assets/dist/img/details-product-type-1.png', alt='Title')
+         img(src='/assets/dist/img/details-product-type-1.png', alt=''+ozellik[x].adi)
 
      -}else{
      .details-product-types-right
-         img(src='/assets/dist/img/details-product-type-2.png', alt='Title')
+         img(src='/assets/dist/img/details-product-type-2.png', alt=''+ozellik[x].adi)
          |         #{ozellik[x].adi}
          strong Musluk
 

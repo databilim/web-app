@@ -21,6 +21,7 @@ const post = require('./routes/post');
 const urun = require('./routes/urun');
 const urunmarka = require('./routes/urunMarka');
 const urunOzellik = require('./routes/urunOzellik');
+const icerik = require('./routes/icerik');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const slider = require('./routes/slider');
@@ -63,6 +64,7 @@ app.use('/doc/post', post);
 
 app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
+app.use('/api/icerik', icerik);
 app.use('/api/urun', urun);
 app.use('/api/urunMarka', urunmarka);
 app.use('/api/urunOzellik', urunOzellik);
@@ -74,6 +76,8 @@ app.use('/api/slider', slider);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  res.send("HATA BÖYLE BİR SAYFA MEVCUT DEĞİLDİR 404 ")
+
   next(err);
 });
 
@@ -85,7 +89,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+    res.send("HATA 500 ")
 });
 
 module.exports = app;

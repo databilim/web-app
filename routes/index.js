@@ -3,6 +3,7 @@ const path = require('path');
 const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
 const Urun = require('../model/Urun');
+const Icerik = require('../model/Icerik');
 const os = require("os");
 const mongoose      =   require("mongoose");
 
@@ -29,10 +30,19 @@ router.get('/:siteUrl', (req, res, next)=> {
         }
         if(data.type === "icerik"){
 
+            menu.then((menu)=>{
+
+                const icerik = Icerik.findOne({menu_id:menu._id})
+                icerik.then((icerikler)=>{
+
+
+                    res.render("sayfa",{ icerik:icerikler,data:data,  res:req })
+                })
+
+            })
 
 
 
-            res.render("sayfa",{ data:data, res:req })
         }
         if(data.type === "iletisim"){
             res.render("iletisim",{ data:data ,res:req })
@@ -91,6 +101,7 @@ router.get('/urun/:urun/:urunid', (req, res, next)=> {
                         keywords:'$keywords',
                         description:'$description',
                         fiyat:'$fiyat',
+                        satinalUrl:'$satinalUrl',
                 },
                 urunozellik:{
                     $push:'$urunozeliks',
