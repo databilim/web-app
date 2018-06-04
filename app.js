@@ -76,6 +76,7 @@ app.use('/api/slider', slider);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  console.log(err)
   res.send("HATA BÖYLE BİR SAYFA MEVCUT DEĞİLDİR 404 ")
 
   next(err);
@@ -91,6 +92,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   //res.render('error');
     res.send("HATA 500 ")
+
+    console.log(err)
 });
 
 module.exports = app;

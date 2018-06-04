@@ -3,6 +3,7 @@ const Schema        =   mongoose.Schema;
 
 const UrunSchema = new Schema({
     urunMarka_id : Schema.Types.ObjectId,
+    menu_id: Schema.Types.ObjectId,
     dil:{
       type:String,
 

@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  #page-header
+    .container
+        .page-header-container
+            .page-header-left
+                .page-header-title Yedek Parçalar
+            .page-header-right
+                ul.page-header-breadcrumbs
+                    li
+                        a(href='', title='Breadcrumbs Item') Anasayfa
+                    li
+                        a(href='', title='Breadcrumbs Item') Ürünler
+                    li
+                        span Yedek Parça
+
+  //include temp/marka
+  #all-products
+      -for(var x = 0; x < urunler.length; x ++ ){
+      .all-products-item
+          .container
+              .row.all-products-row
+                  .col-md-9
+                      h2.all-products-title #{urunler[x].baslik}
+                      h5.all-products-headline #{urunler[x].icerik}
+                      p.all-products-description
+                          | #{urunler[x].aciklama}
+                      img.all-products-image(src='/images/' + urunler[x].resim, alt='Product')
+                      a.button.all-products-button(href='/urun/' + urunler[x].seoUrl + '/' + urunler[x]._id, title='Ürünü İncele') Ürünü İncele'
+
+      -}
+
+
+
+  include temp/sponsor
+  include temp/ebulten

@@ -40,13 +40,21 @@ html(lang='tr')
               nav
                 ul.header-bottom-menu-list.hidden-sm.hidden-xs.hidden-xxs
                   li.header-bottom-menu-list-item
-                    a(href='/', title='Menu Item') Anasayfa
+                    a(href='/', title='Anasayfa') Anasayfa
 
-                    - for( var x = 0; x < res.sayfaMenu.length; x++ ){
-                  li.header-bottom-menu-list-item
-                    a(href='/'+res.sayfaMenu[x].seoUrl, title='Menu Item') #{res.sayfaMenu[x].adi}
+                  - for( var x = 0; x < res.sayfaMenu.length; x++ ){
+
+                    -if(res.sayfaMenu[x].link.length > 0){
+                    li.header-bottom-menu-list-item
+                      a(href='/' + res.sayfaMenu[x].link+'/'+res.sayfaMenu[x]._id, title='' + res.sayfaMenu[x].adi) #{res.sayfaMenu[x].adi}
+                    -}else{
+                    li.header-bottom-menu-list-item
+                      a(href='/' + res.sayfaMenu[x].seoUrl, title='' + res.sayfaMenu[x].adi) #{res.sayfaMenu[x].adi}
+                    -}
+
+
+
                    -}
-
                   
                 button.button.button-mobile-menu.hidden-lg.hidden-md(type='button')
                   i.icon.icon-header-bars

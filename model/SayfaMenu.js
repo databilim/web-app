@@ -3,6 +3,7 @@ const Schema        =   mongoose.Schema;
 
 const KategoriSchema = new Schema({
     ust_id: String,
+    menu_id: String,
     adi:{
         type:String,
         required:true,

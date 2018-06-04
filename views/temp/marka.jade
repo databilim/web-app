@@ -1,0 +1,19 @@
+#other-products
+    .container
+        .other-products
+            .other-products-left
+                button.button(type='button')
+                    i.icon.icon-sponsors-left-arrow
+            .other-products-center
+                #otherProducts.swiper-container
+                    .swiper-wrapper
+                        -for(var x = 0; x < res.urunMarka.length; x++ ){
+                        .swiper-slide
+                            a.other-products-item.active(href='/marka/' + res.urunMarka[x].seoUrl+'/' + res.urunMarka[x]._id, title='Other')
+                                img.other-products-item-image( width='100' src='/' + res.urunMarka[x].resim, alt='' + res.urunMarka[x].adi)
+                                span.other-products-item-title #{res.urunMarka[x].adi}
+                        -}
+
+            .other-products-right
+                button.button(type='button')
+                    i.icon.icon-sponsors-right-arrow

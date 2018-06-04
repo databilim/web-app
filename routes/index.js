@@ -3,9 +3,24 @@ const path = require('path');
 const router = express.Router();
 const SayfaMenu = require('../model/SayfaMenu');
 const Urun = require('../model/Urun');
+const UrunMarka = require('../model/UrunMarka');
 const Icerik = require('../model/Icerik');
 const os = require("os");
 const mongoose      =   require("mongoose");
+
+
+router.get("/yedekparca/:menu_id",(req,res)=>{
+
+    const uruncek = Urun.find({menu_id:req.params.menu_id})
+
+    uruncek.then((data)=>{
+
+        res.render("yedekparca",{urunler:data, res:req})
+    })
+
+
+
+})
 
 router.get('/:siteUrl', (req, res, next)=> {
     const url =  req.params;
@@ -15,7 +30,7 @@ router.get('/:siteUrl', (req, res, next)=> {
     menu.then((data)=>{
         if(data.type === "urunler" ){
 
-            const urun =  Urun.find();
+            const urun =  Urun.find({menu_id:data._id});
 
 
             urun.then((urundata)=>{
@@ -133,6 +148,28 @@ router.get('/', (req, res, next)=> {
     //res.sendFile(path.dirname(__dirname) + '/view/index.html')
 
     res.render("index" , { res:req })
+
+    console.log(req.params)
+
+});
+
+/* Marakalara göre listeleme . */
+router.get('/marka/:markaAdi/:marka_id', (req, res, next)=> {
+
+    //res.sendFile(path.dirname(__dirname) + '/view/index.html')
+    const uruncek = Urun.find({urunMarka_id:req.params.marka_id})
+    const markacek = UrunMarka.findOne({_id:req.params.marka_id})
+
+       uruncek.then((urun)=>{
+           markacek.then((marka)=>{
+               res.render("marka",{marka:marka ,urunler:urun, res:req })
+           })
+
+       })
+
+
+
+
 
     console.log(req.params)
 
