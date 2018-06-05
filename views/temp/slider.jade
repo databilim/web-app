@@ -7,7 +7,7 @@
               .hero-item-image
 
 
-                 img(src='assets/dist/img/hero-1.png', alt=''+res.slider[y].title)
+                 img(src='/images/'+res.slider[y].bgresim, alt=''+res.slider[y].title)
 
 
               .hero-item-content
@@ -17,7 +17,7 @@
                   p.hero-item-content-text
                     | #{res.slider[y].info}
                   -if(!res.slider[y].html){
-                  img.hero-item-content-image( width='650' src=''+res.slider[y].resim, alt=''+res.slider[y].title)
+                  img.hero-item-content-image( width='650' src='/images/'+res.slider[y].resim, alt=''+res.slider[y].title)
                   -}else{
                   #{res.slider[y].html}
                   -}

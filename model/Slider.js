@@ -30,6 +30,9 @@ const SliderSchema = new Schema({
     resim:{
         type:String
     },
+    bgresim:{
+        type:String
+    },
     html:{
       type:String
     },

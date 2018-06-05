@@ -22,6 +22,19 @@ router.get("/yedekparca/:menu_id",(req,res)=>{
 
 })
 
+router.get("/filtreler/:menu_id",(req,res)=>{
+
+    const uruncek = Urun.find({menu_id:req.params.menu_id})
+
+    uruncek.then((data)=>{
+
+        res.render("filtreler",{urunler:data, res:req})
+    })
+
+
+
+})
+
 router.get('/:siteUrl', (req, res, next)=> {
     const url =  req.params;
 

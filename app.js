@@ -22,6 +22,7 @@ const urun = require('./routes/urun');
 const urunmarka = require('./routes/urunMarka');
 const urunOzellik = require('./routes/urunOzellik');
 const icerik = require('./routes/icerik');
+const user = require('./routes/users');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const slider = require('./routes/slider');
@@ -30,7 +31,13 @@ const genelayar = require('./routes/genelayar');
 const firma = require('./routes/firma');
 const mail = require('./routes/mail');
 const db  = require('./helper/db')();
+
+
 const app = express();
+const config  = require('./config');
+app.set("api_secret_key",config.api_secret_key)
+
+
 
 // MIDDLEWARE 
 const MGenelAyar = require("./middleware/genelayar.js")
@@ -72,6 +79,12 @@ app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
 app.use('/api/mail', mail);
 app.use('/api/slider', slider);
+app.use('/api/user', user);
+
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

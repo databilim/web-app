@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  #page-header
+    .container
+        .page-header-container
+            .page-header-left
+                .page-header-title Filtre Grubu
+            .page-header-right
+                ul.page-header-breadcrumbs
+                    li
+                        a(href='', title='Breadcrumbs Item') Anasayfa
+                    li
+                        a(href='', title='Breadcrumbs Item') Ürünler
+                    li
+                        span Yedek Parça
+
+  //include temp/marka
+  #all-products
+
+
+
+
+  include temp/sponsor
+  include temp/ebulten
