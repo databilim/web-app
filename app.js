@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 
 
 
+
 const index = require('./routes/index');
 const doc = require('./routes/docApi');
 const post = require('./routes/post');
@@ -45,6 +46,8 @@ const Mfirma = require("./middleware/firma")
 const MsayfaMenu = require("./middleware/sayfamenu")
 const MurunMarka = require("./middleware/urunMarka")
 const Mslider = require("./middleware/slider")
+const vToken = require("./middleware/token")
+const log = require("./middleware/log")
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,7 +55,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -63,12 +66,14 @@ app.use(Mfirma)
 app.use(MsayfaMenu)
 app.use(MurunMarka)
 app.use(Mslider)
+app.use(log)
 
 
 app.use('/', index);
 app.use('/doc/api', doc);
 app.use('/doc/post', post);
 
+app.use('/api/', vToken);
 app.use('/api/sayfamenu', sayfaMenu);
 app.use('/api/kategori', kategori);
 app.use('/api/icerik', icerik);
@@ -79,7 +84,7 @@ app.use('/api/genelayar', genelayar);
 app.use('/api/firma', firma);
 app.use('/api/mail', mail);
 app.use('/api/slider', slider);
-app.use('/api/user', user);
+app.use('/user', user);
 
 
 

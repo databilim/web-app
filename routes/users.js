@@ -54,16 +54,14 @@ router.post("/login",(req,res)=>{
                 }else{
 
                     const payload = {
-                        username,
-
-                    }
-
-                    const token = jwt.sign(payload,app.get("api_secret_key"),{
-                        expiresIn: 1, /// 1 dakika
-                    })
+                        username
+                    };
+                    const token = jwt.sign(payload, req.app.get('api_secret_key'), {
+                        expiresIn: 720 // 12 saat
+                    });
 
                     res.json({
-                        status:true,
+                        status: true,
                         token
                     })
                 }
