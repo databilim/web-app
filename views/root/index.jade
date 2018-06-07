@@ -1,0 +1,26 @@
+extends layout
+
+block content
+   .content-page
+    // Start content
+    .content
+        .container-fluid
+            // Page-Title
+            .row
+                .col-sm-12
+                    .btn-group.pull-right.m-t-15
+                        button.btn.btn-default.dropdown-toggle.waves-effect.waves-light(type='button', data-toggle='dropdown', aria-expanded='false') Settings
+                        .dropdown-menu.dropdown-menu-right(aria-labelledby='btnGroupDrop1')
+                            a.dropdown-item(href='#') Dropdown One
+                            a.dropdown-item(href='#') Dropdown Two
+                            a.dropdown-item(href='#') Dropdown Three
+                            a.dropdown-item(href='#') Dropdown Four
+                    h4.page-title Starter
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href='#') Ubold
+                        li.breadcrumb-item
+                            a(href='#') Pages
+                        li.breadcrumb-item.active Starter
+        // container
+    // content

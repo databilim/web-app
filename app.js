@@ -24,6 +24,7 @@ const urunmarka = require('./routes/urunMarka');
 const urunOzellik = require('./routes/urunOzellik');
 const icerik = require('./routes/icerik');
 const user = require('./routes/users');
+const admin = require('./routes/admin');
 
 const sayfaMenu = require('./routes/sayfaMenu');
 const slider = require('./routes/slider');
@@ -68,10 +69,11 @@ app.use(MurunMarka)
 app.use(Mslider)
 app.use(log)
 
-
+app.use('/admin', admin);
 app.use('/', index);
 app.use('/doc/api', doc);
 app.use('/doc/post', post);
+
 
 app.use('/api/', vToken);
 app.use('/api/sayfamenu', sayfaMenu);
