@@ -5,6 +5,6 @@ module.exports = (req,res,next)=>{
 
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-    log.info(ip + "Giriş Yaptı")
+    log.info(ip + " Giriş Yaptı")
     next()
 }
