@@ -1,0 +1,41 @@
+extends layout
+
+block content
+   .content-page
+    // Start content
+    .content
+        .container-fluid
+            // Page-Title
+            .row
+                .col-sm-12
+
+                    h4.page-title Genel Ayar
+                    ol.breadcrumb
+                        li.breadcrumb-item
+                            a(href='#') Admin
+                        li.breadcrumb-item
+                            a(href='#') Genel Ayar
+
+                 // container
+                // content
+            .row
+              .col-sm-12
+                .card-box
+                  h4.m-t-0.m-b-20.header-title
+                    b Genel Ayarlar
+                  .row
+                     .col-12
+                        .p-20
+                            form#rendered-form
+                                .rendered-form
+                                    div
+                                        h1#control-1096450 GENEL AYAR
+                                    .fb-text.form-group.field-text-1528469306346
+                                        label.fb-text-label(for='text-1528469306346')
+                                            | Site Adresi
+                                            span.fb-required *
+                                            span.tooltip-element(tooltip='Site url gir ') ?
+                                        input#text-1528469306346.form-control(type='text', name='text-1528469306346', title='Site url gir ', required='required', aria-required='true')
+                                    .fb-button.form-group.field-button-1528469284759
+                                        button#button-1528469284759.btn.btn-info(type='button', name='button-1528469284759', style='info') Buton
+

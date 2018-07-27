@@ -18,6 +18,13 @@ res.render("root/index")
 })
 
 
+router.get("/genelayar",(req,res)=>{
+
+res.render("root/genelayar")
+
+})
+
+
 
 
 module.exports = router;
