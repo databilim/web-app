@@ -8,6 +8,8 @@ File: Main Css
 /* =============
    Common
 ============= */
+
+
 body {
   background: #ebeff2;
   margin: 0;
@@ -67,6 +69,12 @@ a:focus {
   right: 0;
   left: 240px;
   font-size: 13px;
+}
+
+
+.cx-radio{
+
+  margin: 10px;
 }
 
 #wrapper {

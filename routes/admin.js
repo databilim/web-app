@@ -20,7 +20,8 @@ res.render("root/index")
 
 router.get("/genelayar",(req,res)=>{
 
-res.render("root/genelayar")
+    console.log(req.genelayar)
+res.render("root/genelayar",req.genelayar)
 
 })
 

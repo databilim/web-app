@@ -26,16 +26,49 @@ block content
                   .row
                      .col-12
                         .p-20
-                            form#rendered-form
+                            form#rendered-form(action="",method="post")
                                 .rendered-form
                                     div
-                                        h1#control-1096450 GENEL AYAR
+                                       // h1#control-1096450 GENEL AYAR
                                     .fb-text.form-group.field-text-1528469306346
                                         label.fb-text-label(for='text-1528469306346')
                                             | Site Adresi
-                                            span.fb-required *
-                                            span.tooltip-element(tooltip='Site url gir ') ?
-                                        input#text-1528469306346.form-control(type='text', name='text-1528469306346', title='Site url gir ', required='required', aria-required='true')
-                                    .fb-button.form-group.field-button-1528469284759
-                                        button#button-1528469284759.btn.btn-info(type='button', name='button-1528469284759', style='info') Buton
+                                        input#text-1528469306346.form-control(type='text', name='siteUrl' , required='required', aria-required='true' , value=""+siteUrl)
+                                        .fb-button.form-group.field-button-1528469284759
+                                        label.fb-text-label(for='text-1528469306346')
+                                            | Site Başlığı
+                                        input#text-1528469306346.form-control(type='text', name='title' , required='required', aria-required='true' , value="" + title)
+                                        .fb-button.form-group.field-button-1528469284759
+                                        label.fb-text-label(for='text-1528469306346')
+                                            | Site Açıklama
+                                        textarea#text-1528469306346.form-control(type='text', name='description' )
+                                            | #{description}
+                                        .fb-button.form-group.field-button-1528469284759
+                                        label.fb-text-label(for='text-1528469306346')
+                                            | Site Anahtar Kelime
+                                        input#text-1528469306346.form-control(type='text', name='keywords' , required='required', aria-required='true' , value="" + keywords)
+                                        .fb-button.form-group.field-button-1528469284759
+                                        label.fb-text-label(for='text-1528469306346')
+                                            | Copyright
+                                        input#text-1528469306346.form-control(type='text', name='copyright' , required='required', aria-required='true' , value="" + copyright)
+                                        .fb-button.form-group.field-button-1528469284759
+
+                                        .fb-button.form-group.field-button-1528469284759
+                                         label.fb-text-label Şalter
+                                         br
+
+                                         label.radio-inline
+                                           - if(Salter===0) { var c = true }else{ var c = false; }
+                                            input(type='radio',name="salter", value='1' ,class="cx-radio", checked=c )
+                                            | Siteyi Kapat
+                                         label.radio-inline
+                                            input(type='radio',name="salter", value='0' ,class="cx-radio"  )
+                                            | Siteyi Aç
+
+
+
+
+
+                                        .fb-button.form-group.field-button-1528469284759
+                                        button#button-1528469284759.btn.btn-info(type='submit', name='button-1528469284759', style='info') Güncelle
 
